@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="buttons">
+        <h1 id="header">Parameter oppgave</h1>
+        <button onclick="btn1('blue', 100)"">number 1</button>
+        <button onclick="btn2('green', 200)"">number 2</button>
+        <p>number 1 knappen endrer hva som står i headeren, fargen og størelsen </p>
+        <p>number 2 knappen endrer hva som står i headeren til noe annet, en annen fargen og enda større størelse </p>
+    </div>
+
+
+    <script>
+        function btn1(color, fontSize) {
+            document.getElementById('header').innerHTML = /*html*/`
+            <div style="color:${color}; font-size:${fontSize}px">STOR TEXT</div>
+            `;
+        }
+
+        function btn2(color, fontSize) {
+            document.getElementById('header').innerHTML = /*html*/`
+            <div style="color:${color}; font-size:${fontSize}px">ENDA STØRRE TEKST</div>
+            `;
+        }
+    </script>
+</body>
+</html>
