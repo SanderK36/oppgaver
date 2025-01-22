@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>visuell teller oppgave</title>
+
+    <style>
+        .buttons {
+            display: flex;
+            font-size: 50px;
+        }
+
+        #output {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="buttons">
+        <button onclick="increaseNum()">+1</button>
+        <div id="output">1</div>
+        <button onclick="decreaseNum()">-1</button>
+    </div>
+
+
+
+    <script>
+        
+        var outputDiv = document.getElementById('output')
+        var numToShow = 0;
+
+        function increaseNum() {
+            numToShow++;
+            outputDiv.innerHTML = numToShow;
+        }
+
+        function decreaseNum() {
+            numToShow--;
+            outputDiv.innerHTML = numToShow;
+        }
+        
+    </script>
+</body>
+</html>
