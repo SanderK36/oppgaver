@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mainDiv > div {
+            border: 5px solid red;
+            margin: 25px;
+            display: grid;
+            justify-content: center;
+            font-size: 50px;
+        }
+
+        .mainDiv {
+            margin: 15%;
+            margin-top: 1%;
+        }
+    </style>
+</head>
+<body>
+    <div class="mainDiv">
+    <div id="tastatur" onclick="pushedLetter(this)">A</div>
+    <div id="tastatur" onclick="pushedLetter(this)">B</div>
+    <div id="tastatur" onclick="pushedLetter(this)">C</div>
+    <div id="tastatur" onclick="pushedLetter(this)">D</div>
+    <div id="tastatur" onclick="pushedLetter(this)">E</div>
+    <div id="tastatur" onclick="pushedLetter(this)">F</div>
+</div>
+
+    <script>
+        function pushedLetter(htmlElement) {
+            // document.getElementById('tastatur').innerHTML;
+            let letterPressed = htmlElement.innerHTML;
+            console.log(letterPressed);
+        }
+    </script>
+</body>
+</html>
