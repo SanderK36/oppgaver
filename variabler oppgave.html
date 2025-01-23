@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        height: 100px;
+        width: 100px;
+        border: 3px solid black;
+      }
+
+      .blue {
+        background-color: blue;
+      }
+
+      .red {
+        background-color: red;
+      }
+
+      .green {
+        background-color: green;
+      }
+
+      .boxes {
+        display: flex;
+        justify-content: center;
+        margin-top: 250px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="boxes">
+      <div class="blue box" onclick="changeColor(this,)">1</div>
+      <div class="red box" onclick="changeColor(this)">2</div>
+      <div class="green box" onclick="changeColor(this)">3</div>
+    </div>
+
+    <script>
+      function changeColor(element) {
+        element.style.backgroundColor = "cyan";
+        element.innerHTML = "Du trykka på meg :)";
+      }
+    </script>
+  </body>
+</html>
