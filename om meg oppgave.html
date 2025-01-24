@@ -30,12 +30,26 @@
         margin-left: 63%;
       }
 
-      .byttFarge {
-        background-color: darkblue;
+      #divBox {
+        border: 5px solid green;
+        display: flex;
+        margin-left: 50%;
+        height: 500px;
+        width: 500px;
+        align-items: center;
+        justify-content: center;
+        font-size: 100px;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+
+      #btn {
+        width: 150px;
+        height: 100px;
       }
     </style>
   </head>
-  <body id="knapp">
+  <body id="bg">
     <h1 class="header">Om meg</h1>
     <div class="omMeg">
       <p>Hei! jeg heter Sander og dette er mine hobbyer</p>
@@ -45,16 +59,25 @@
         <li>Programmering</li>
       </ul>
     </div>
-    <div>
-      <button onclick="byttFarge()">
-        Trykk her for å endre bakgrunnsfarge
-      </button>
+
+    <button id="btn" onclick="changeBgColor()">Bytt bakgrunnsfarge</button>
+
+    <div id="divBox" onclick="byttFarge(this)">
+    Bytt farge
     </div>
+
+    <div>
+    </div>
+
   </body>
   <script>
-    function byttFarge() {
-        document.getElementById('knapp').classList.add('byttFarge');
+    function byttFarge(element) {
+      element.style.backgroundColor = "darkblue";
+      document.getElementById('divBox').style.color = "red";
+    }
 
+    function changeBgColor() {
+      document.getElementById('bg').style.backgroundColor = "green";
     }
   </script>
 </html>
