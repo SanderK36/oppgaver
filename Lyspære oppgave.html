@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .lysDiv {
+            width: 200px;
+            height: 200px;
+            background-color: darkgray;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            margin-left: 50%;
+            margin-top: 25%;
+        }
+
+        .lysPå {
+            background-color: yellow;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="lysDiv" id="lys" onclick="toggleLight()">Lyspæra er av!</div>
+    
+    <script>
+        let lightOn = false;
+        const lysElement = document.getElementById("lys");
+
+        function toggleLight() {
+            lightOn = !lightOn;
+
+
+            if(lightOn) {
+                lysElement.classList.add("lysPå");
+                lysElement.innerHTML = "Lyspæra er på!"
+            } else {
+                lysElement.classList.remove("lysPå");
+                lysElement.innerHTML = "Lyspæra er av! "
+            }
+        }
+        
+    </script>
+</body>
+</html>
