@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+
+  <body>
+    <div>
+        <button onclick="noLayout()">Ingen layout</button>
+        <button>Vertikal layout</button>
+        <button onclick="horisontal()">Horisontal layout</button>
+        <button onclick="gridLayout()">Grid Layout</button>
+    </div>
+    
+    <div class="card" onclick="blankAll()">
+    <div class="header green" onclick="show1()">Verktøy</div>
+    <div id="innerCard">
+        De to viktigeste verktøyene vi skal bruke er disse:
+        <li>
+            koderedigeringsprogrammet <a href="https://code.visualstudio.com/">Visual Studio Code</a>
+            <br>
+            Vi skal bruke noen <i>extensions</i>
+            :
+            <ul>
+                <li>
+                    Javascript-booster
+                </li>
+                <li>es6-string-html</li>
+                <li>live-server</li>
+                <li>live-share</li>
+            </ul>
+        </li>
+        <li>
+            nettleseren <a href="https://www.google.com/chrome/">Google Chrome</a>
+        </li>
+    </div>
+</div>
+
+    <div class="card">
+    <div class="header blue">HTML</div>
+    <div id="innerCard">
+        Vi bruker HTML til å definere et dokument.
+        <ul>
+            <li>Tagger for grunnleggende oppsett av en HTML-fil</li>
+            <li>Tagger for grunnleggende formatering av text</li>
+            <li>div</li>
+            <li>input type="text"</li>
+            <li>buttons</li>
+            <li><a href="https://www.w3schools.com/html/default.asp">W3Schools HTML Tutorial</a></li>
+            <li><a href="https://www.w3schools.com/tags/default.asp">W3Schools HTML Reference</a></li>
+        </ul>
+    </div>
+</div>
+
+    <div class="card">
+    <div class="header red">CSS</div>
+    <div id="innerCard">
+        Vi bruker CSS til å styke et dokument, altså farger, fonter, utseende og lignende.
+        <ul>
+            <li>Background-color</li>
+            <li>color</li>
+            <li>padding</li>
+            <li>margin</li>
+            <li>border</li>
+            <li>text-align</li>
+            <li>font-size</li>
+            <li><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">Flexbox</a></li>
+            <li><a href="https://css-tricks.com/snippets/css/complete-guide-grid/">Grid</a></li>
+            <li><a href="https://www.w3schools.com/css/default.asp">W3Schools CSS Tutorial</a></li>
+            <li><a href="https://www.w3schools.com/cssref/default.asp">W3Schools CSS Reference</a></li>
+        </ul>
+    </div>
+</div>
+
+    <div class="card">
+    <div class="header yellow">JavaScript</div>
+    <div id="innerCard">
+        Det viktigeste ci skal lære er programmeringspråket JavaScript. Vi skal lære grunnleggende programmering ved å manipulere HTML- og CSS-kode på nettsiden ved hjelp av JavaScript.
+
+        <ul>
+            <li>Background-color</li>
+            <li>color</li>
+            <li>padding</li>
+            <li>margin</li>
+            <li>border</li>
+            <li>text-align</li>
+            <li>font-size</li>
+            <li>Det finnes en W3School JavaScript Tutorial, men her anbefaler vi heller å følge kurset vårt på Moodle.</li>
+            <li><a href="https://www.w3schools.com/jsref/default.asp">W3Schools JavaScript Reference</a></li>
+        </ul>
+    </div>
+</div>
+
+    <div class="card">
+    <div class="header dark" onclick="blankAll()">Hode, kropp og ben</div>
+    <div id="innerCard">
+        <div id="hode" style="display: flex; align-items: center;">
+         </div>
+         <div id="kropp" style="display: flex; align-items: center;">
+        </div>
+        <div id="ben" style="display: flex; align-items: center;">
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+  showHead1();
+  showBody1();
+  showLegs1();
+
+
+    function showHead1(){
+        document.getElementById('hode').innerHTML = /*HTML*/`
+        
+        
+             <button onclick="showHead4()">◀</button>
+            <img src="img/head1.png" alt="">
+            <button onclick="showHead2()">▶</button> 
+        
+        `;
+    }
+
+    function showHead2(){
+        document.getElementById('hode').innerHTML = /*HTML*/`
+        
+        
+             <button onclick="showHead1()">◀</button>
+            <img src="img/head2.png" alt="">
+            <button onclick="showHead3()">▶</button> 
+        
+        `;
+    }
+    
+    function showHead3(){
+        document.getElementById('hode').innerHTML = /*HTML*/`
+        
+        
+             <button onclick="showHead2()">◀</button>
+            <img src="img/head3.png" alt="">
+            <button onclick="showHead4()">▶</button> 
+        
+        `;
+    }
+
+    function showHead4(){
+        document.getElementById('hode').innerHTML = /*HTML*/`
+        
+        
+             <button onclick="showHead3()">◀</button>
+            <img src="img/head4.png" alt="">
+            <button onclick="showHead1()">▶</button> 
+        
+        `;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    function showBody1(){
+        document.getElementById('kropp').innerHTML = /*HTML*/`
+        
+        
+             <button onclick="showBody4()">◀</button>
+            <img src="img/body1.png" alt="">
+            <button onclick="showBody2()">▶</button> 
+        
+        `;
+    }
+
+    function showBody2(){
+        document.getElementById('kropp').innerHTML = /*HTML*/`
+        
+        
+             <button onclick="showBody1()">◀</button>
+            <img src="img/Body2.png" alt="">
+            <button onclick="showBody3()">▶</button> 
+        
+        `;
+    }
+    
+    function showBody3(){
+        document.getElementById('kropp').innerHTML = /*HTML*/`
+        
+        
+             <button onclick="showBody2()">◀</button>
+            <img src="img/Body3.png" alt="">
+            <button onclick="showBody4()">▶</button> 
+        
+        `;
+    }
+
+    function showBody4(){
+        document.getElementById('kropp').innerHTML = /*HTML*/`
+        
+        
+             <button onclick="showBody3()">◀</button>
+            <img src="img/Body4.png" alt="">
+            <button onclick="showBody1()">▶</button> 
+        
+        `;
+    }
+
+
+
+
+
+
+
+    function showLegs1(){
+        document.getElementById('ben').innerHTML = /*HTML*/`
+        
+        
+             <button onclick="showLegs4()">◀</button>
+            <img src="img/legs1.png" alt="">
+            <button onclick="showLegs2()">▶</button> 
+        
+        `;
+    }
+
+    function showLegs2(){
+        document.getElementById('ben').innerHTML = /*HTML*/`
+        
+        
+             <button onclick="showLegs1()">◀</button>
+            <img src="img/legs2.png" alt="">
+            <button onclick="showLegs3()">▶</button> 
+        
+        `;
+    }
+    
+    function showLegs3(){
+        document.getElementById('ben').innerHTML = /*HTML*/`
+        
+        
+             <button onclick="showLegs2()">◀</button>
+            <img src="img/legs3.png" alt="">
+            <button onclick="showLegs4()">▶</button> 
+        
+        `;
+    }
+
+    function showLegs4(){
+        document.getElementById('ben').innerHTML = /*HTML*/`
+        
+        
+             <button onclick="showLegs3()">◀</button>
+            <img src="img/legs4.png" alt="">
+            <button onclick="showLegs1()">▶</button> 
+        
+        `;
+    }
+
+</script>
+
+</html>
