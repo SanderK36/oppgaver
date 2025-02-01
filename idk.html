@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="points">Poeng: 0</div>
+    <div id="firstNum"></div>
+    <input type="text" id="operatorInput" placeholder="Skriv operator">
+    <div id="secondNum"></div>
+    <button onclick="submit()">Submit</button>
+    <button onclick="reset()">Reset</button>
+
+    <script>
+        let firstNum = 0;
+        let secondNum = 0;
+        let score = 0;
+        let correctOperator = "";
+
+        function reset() {
+            updateNumbers();
+        }
+
+        function updateNumbers(){
+            firstNum = getRandomNumber();
+            secondNum = getRandomNumber();
+            document.getElementById('firstNum').innerHTML = firstNum;
+            document.getElementById('secondNum').innerHTML = secondNum;
+
+            // Sett riktig operator
+            if (firstNum > secondNum) {
+                correctOperator = ">";
+            } else if (firstNum < secondNum) {
+                correctOperator = "<";
+            } else {
+                correctOperator = "=";
+            }
+        }
+
+        function getRandomNumber(){
+            return Math.floor(Math.random() * 10) + 1; // Generer tall mellom 1 og 10
+        }
+
+        function submit() {
+            let userAnswer = document.getElementById("operatorInput").value.trim();
+
+            if (userAnswer === correctOperator) {
+                score++;
+            } else {
+                score--;
+            }
+
+            // Oppdater poeng
+            document.getElementById('points').innerHTML = "Poeng: " + score;
+
+            // Tøm inputfeltet etter submit
+            document.getElementById("operatorInput").value = '';
+        }
+
+        // Start spillet ved å generere tilfeldige tall når siden lastes
+        window.onload = updateNumbers;
+    </script>
+</body>
+</html>

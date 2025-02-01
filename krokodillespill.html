@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div>poeng: 0</div>
+    <div id="points">poeng: 0</div>
     <!-- <img src="" alt=""> -->
     <!-- <a href="google.com" target="_new">Lenke</a> -->
      <div id="firstNum"></div>
@@ -18,6 +18,8 @@
      <script>
         let firstNum = 0;
         let secondNum = 0;
+        let points = 0;
+        let riktigSvar = "";
 
         function reset() {
             updateNumbers();
@@ -28,11 +30,31 @@
             secondNum = getRandomNumber();
             document.getElementById('firstNum').innerHTML = firstNum;
             document.getElementById('secondNum').innerHTML = secondNum;
+
+            if (firstNum > secondNum) {
+                riktigSvar = ">";
+            } else if (firstNum < secondNum) {
+                riktigSvar = "<";
+            } else {
+                riktigSvar = "=";
+            }
         }
 
         function getRandomNumber(){
-            return Math.round(Math.random() * 10);
+            return Math.round(Math.random() * 10) + 1;
         }
+
+        function submit(){
+            if(firstNum > secondNum) {
+                points ++;
+            } else {
+                points --;
+            }
+            document.getElementById('points').innerHTML = "poeng: " + points;
+        }
+
+        window.onload=updateNumbers;
+
 
      </script>
 </body>
