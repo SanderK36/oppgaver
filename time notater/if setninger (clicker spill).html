@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clicker 3000</title>
+    <style>
+        body {
+            background-color: grey;
+            padding: 50px;
+        }
+        #mainDiv {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            justify-content: center;
+            display: flex;
+        }
+
+        button {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 25px;
+            background-color: gainsboro;
+            color: black;
+            border-radius: 12px;
+        }
+
+        .pointsDiv {
+            padding: 50px;
+            font-size: 50px;
+            border: 2px solid black;
+            background-color: gainsboro;
+            color: black;
+            border-radius: 15%;
+        }
+    </style>
+</head>
+<body>
+ <div id="mainDiv">
+    <div class="pointsDiv">
+     <span id="points">0</span>
+    </div>
+
+    <div class="buttons">
+        <ul><button style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" onclick="addPoints()">Klikk her</button></ul>
+        <ul><button style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" id="upgradeButton" onclick="upgrade()">Oppgrader (Koster: 10)</button></ul>
+        <ul><button style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" id="autoClickerButton" onclick="buyAutoClicker()">Kjøp Auto-Clicker (Koster: 50)</button></ul>
+        <ul><button style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" id="doubleXPButton" onclick="buyDoubleXP()">Kjøp 2x XP (Koster: 1500)</button></ul>
+    </div>
+
+    <div class="stats">
+        <p>XP: <span id="xp">0</span>/<span id="xpRequired">150</span></p>
+        <p>Nivå: <span id="level">1</span></p>
+    </div>
+
+    <script>
+        let points = 0;
+        let pointsPerclick = 1;
+        let upgradeCost = 50;
+        let autoClickerCost = 250;
+        let doubleXPCost = 1500;  // Ny kostnad for 2x XP oppgradering
+        let autoClickerLevel = 0;
+        let autoClickerInterval = 1000;
+        let xp = 0;
+        let level = 1;
+        let xpRequired = 150;
+        let clicks = 0;
+        let doubleXPActive = false;  // Status for 2x XP oppgradering
+
+        // Funksjon for å legge til poeng når spilleren klikker
+        function addPoints(){
+            points += pointsPerclick;
+            clicks++;
+            showPoints();
+
+            if (clicks >= 150) {
+                gainXP(10);  // Gi 10 XP for 150 klikk
+                clicks = 0;
+            }
+        }
+
+        // Funksjon for oppgradering (for å øke poeng per klikk)
+        function upgrade () {
+            if (points >= upgradeCost) {
+                pointsPerclick *= 2;
+                points -= upgradeCost;
+                upgradeCost = Math.floor(upgradeCost * 1.8);
+                gainXP(5);  // Gi XP for oppgraderingen
+                showPoints();
+                updateUpgradeButton();
+            }
+        }
+
+        // Funksjon for å kjøpe eller oppgradere auto-clicker
+        function buyAutoClicker() {
+            if (points >= autoClickerCost) {
+                points -= autoClickerCost;
+                autoClickerLevel++;
+                autoClickerCost = Math.floor(autoClickerCost * 3);
+                autoClickerInterval = Math.max(500, autoClickerInterval - 200);
+                startAutoClicker();
+                gainXP(15);  // Gi XP for å kjøpe auto-clicker
+                showPoints();
+                updateAutoClickerButton();
+            }
+        }
+
+        // Funksjon for å starte auto-clicker
+        function startAutoClicker() {
+            if (autoClickerLevel > 0) {
+                setInterval(() => {
+                    points += pointsPerclick;
+                    showPoints();
+                }, autoClickerInterval);
+            }
+        }
+
+        // Funksjon for å vise poeng på skjermen
+        function showPoints(){
+            document.getElementById('points').innerHTML = points;
+        }
+
+        // Funksjon for å oppdatere oppgraderingsknappen
+        function updateUpgradeButton() {
+            document.getElementById('upgradeButton').innerHTML = 'Oppgrader (Koster: ' + upgradeCost + ')';
+        }
+
+        // Funksjon for å oppdatere auto-clicker-knappen
+        function updateAutoClickerButton() {
+            document.getElementById('autoClickerButton').innerHTML = 'Kjøp Auto-Clicker (Koster: ' + autoClickerCost + ')';
+        }
+
+        // Funksjon for å kjøpe 2x XP oppgradering
+        function buyDoubleXP() {
+            if (points >= doubleXPCost) {
+                points -= doubleXPCost;
+                doubleXPActive = true;  // Aktiver 2x XP
+                doubleXPCost = Math.floor(doubleXPCost * 1.5);  // Øk prisen for neste 2x XP oppgradering
+                showPoints();
+                updateDoubleXPButton();  // Oppdater knapp med ny pris
+            }
+        }
+
+        // Funksjon for å oppdatere 2x XP-knappen
+        function updateDoubleXPButton() {
+            document.getElementById('doubleXPButton').innerHTML = 'Kjøp 2x XP (Koster: ' + doubleXPCost + ')';
+        }
+
+        // Funksjon for å legge til XP (med 2x XP hvis aktivert)
+        function gainXP(amount) {
+            let finalXP = doubleXPActive ? amount * 2 : amount;  // Doble XP hvis 2x XP er aktivert
+            xp += finalXP;
+
+            if (xp >= xpRequired) {
+                levelUp();
+            }
+            updateXPDisplay();
+        }
+
+        // Funksjon for å oppgradere nivået
+        function levelUp() {
+            level++;
+            xp -= xpRequired;
+            xpRequired = Math.floor(xpRequired * 1.5);
+        }
+
+        // Funksjon for å oppdatere XP-visning
+        function updateXPDisplay() {
+            document.getElementById('xp').innerHTML = xp;
+            document.getElementById('xpRequired').innerHTML = xpRequired;
+            document.getElementById('level').innerHTML = level;
+        }
+
+        // Initialisering av knapper og XP-visning
+        updateUpgradeButton();
+        updateAutoClickerButton();
+        updateDoubleXPButton();  // Oppdater 2x XP-knappen
+        updateXPDisplay();
+    </script>
+</body>
+</html>

@@ -1,49 +1,56 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Produkter</title>
     <style>
+        .product {
+            border: 1px solid black;
+            padding: 10px;
+            margin: 5px;
+        }
+        .product-name {
+            font-weight: bold;
+        }
 
+        .product-description {
+            padding: 5px;
+            font-style: italic;   
+            font-size: 90%;
+        }
     </style>
 </head>
 <body>
-    <div id="app">
-       
-    </div>
-
+    <div id="app"></div>
     <script>
-        showProducts()
+        showProducts();  
+
+        function showProducts () {     
+            document.getElementById('app').innerHTML = /*HTML*/`
+                ${createProductHtml('Eple', '10', 'Holder doktoren unna')}
+                ${createProductHtml('Klementin', '15', 'Det er jo tross alt jul eller?')}
+                ${createProductHtml('Appelsin', '20', 'Det må da være påske snart..')}
+            `;              
+        }
         
-        function showProducts() {
-        document.getElementById('app').innerHTML = /*HTML*/`
-        ${createProductHtml('Eple', '10', 'Holder doktoren unna')}
-        ${createProductHtml('Klementin', '15', 'Det er jo tross alt jul snart')}
-        ${createProductHtml('Appelsin', '20', 'Det må da være påske snart')}
-
-        `;
-    }
-
-        function createProductHtml(productName, price, description){
+        function createProductHtml(productName, price, description) {
             return /*HTML*/`
-            <div class="product">
-            <div class="product-name">${productName}</div>
-            <div>Pris: ${price}</div>
-           ${createProductDescriptionHtml(description)}
-            </div>
+                <div class="product">
+                    <div class="product-name">${productName}</div>
+                    <div>Pris: ${price} kr</div>                    
+                     ${createProductDescriptionHtml(description)}                    
+                </div>
             `;
-
         }
 
-        function createProductHtml(description) {
+        function createProductDescriptionHtml(description) {
             return /*HTML*/`
             <div class="product-description">
                 <h4>Beskrivelse</h4>
                 ${description}
-                </div>;
-            `
+            </div>`;
         }
+
     </script>
 </body>
 </html>
