@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body><div id="mainDiv" style="text-align: center; justify-content: center; display: inline;">
+   <button onclick="increaseNum()" style="width: 100px; height: 100px; font-size: 50px; border-radius: 50%;">+1</button>
+
+
+    <div id="text" style="font-size: 50px; display: inline;">Number:</div>
+
+    
+   <button onclick="decreaseNum()" style="width: 100px; height: 100px; font-size: 50px; border-radius: 50%;" >-1</button>
+
+   <script>
+    var numToShow = 0;
+    var textDiv = document.getElementById('text')
+
+     function increaseNum () {
+        numToShow++;
+        textDiv.innerHTML = ("Number: " + numToShow)
+    }
+
+    function decreaseNum () {
+        numToShow--;
+        textDiv.innerHTML = ("Number: " + numToShow)
+    }
+   </script>
+</div>
+   
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tekst">Dette er en tekst</div>
+    <button onclick="change1('blue', 50)">endre tekst, farge og størrelse</button>
+    <button onclick="change2('red', 100)"> endre til en annen tekst, farge og størrelse</button>
+</body>
+<script>
+    function change1(color, fontSize) {
+    document.getElementById('tekst').innerHTML = /*html*/`
+    <div style ="color: ${color}; font-size: ${fontSize}px;">Halla!</div>
+    `
+    }
+
+
+    function change2(color, fontSize) {
+    document.getElementById('tekst').innerHTML = /*html*/`
+    <div style ="color: ${color}; font-size: ${fontSize}px;">Hva skjer?!</div>
+    `
+    }
+</script>
+</html>
