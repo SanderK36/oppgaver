@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="buttons">
+    <button onclick="timeStart()">Start</button>
+    <button onclick="pause()">Pause</button>
+    <button onclick="reset()">Reset</button>
+    </div>
+    <div id="mainDiv" class="clock"></div> Rundetider: <div id="lastRound" class="roundList"></div> <br>
+
+
+
+    <script>
+        var mainDiv = document.getElementById('mainDiv');
+        var roundTime = document.getElementById('lastRound');
+        var timer;
+        var seconds = 0;
+
+
+        function timeStart() {
+            
+            setInterval(countSeconds, 1000);
+        }
+
+        function countSeconds() {
+            mainDiv.innerHTML = seconds;
+            seconds++;
+        }
+
+        function pause() {
+            roundTime.innerHTML += /*HTML*/`<li>${seconds-1}</li>`;
+            clearInterval(timer);
+            seconds = 0;
+        }
+
+        function reset() {
+            location.reload()
+        }
+    </script>
+</body>
+</html>
