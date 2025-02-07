@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #sandersTag1 {
+            background-color: red;
+            width: 500px;
+            margin: 10px;
+        }
+
+        #sandersTag2 {
+            background-color: blue;
+            width: 500px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="header" onclick="show1()">Overskrift A</div>
+        <div id="sandersTag1"></div>
+    </div>
+
+    <div class="card">
+        <div class="header" onclick="show2()">Overskrift B</div>
+        <div id="sandersTag2"></div>
+    </div>
+    <div id="sandersTag1">(tom)</div>
+    <div id="sandersTag2">(tom)</div>
+    <button onclick="show1()">Vis noe i tag 1</button>
+    <button onclick="show2()">Vis noe i tag 2</button>
+    <button onclick="blankAll()">Blank begge</button>
+
+
+    <h3>Bla opp og ned</h3>
+    <div style="display:flex;" id="numberAndButtons">
+    </div>
+
+    <script>
+        showNumber1();
+        function showNumber1(){
+            document.getElementById('numberAndButtons').innerHTML = /*HTML*/`
+            <button onclick="showNumber4()">
+            ◀
+            </button>
+            <div style="width: 40px; text-align: center;">
+              1
+             </div>
+            <button onclick="showNumber2()">
+            ▶
+            </button>
+        `;
+        }
+        function showNumber2(){
+            document.getElementById('numberAndButtons').innerHTML = /*HTML*/`
+            <button onclick="showNumber1()">
+            ◀
+            </button>
+            <div style="width: 40px; text-align: center;">
+              2
+             </div>
+            <button onclick="showNumber3()">
+            ▶
+            </button>
+        `;
+        }
+        function showNumber3(){
+            document.getElementById('numberAndButtons').innerHTML = /*HTML*/`
+            <button onclick="showNumber2()">
+            ◀
+            </button>
+            <div style="width: 40px; text-align: center;">
+              3
+             </div>
+            <button onclick="showNumber4()">
+            ▶
+            </button>
+        `;
+        }
+        function showNumber4(){
+            document.getElementById('numberAndButtons').innerHTML = /*HTML*/`
+            <button onclick="showNumber3()">
+            ◀
+            </button>
+            <div style="width: 40px; text-align: center;">
+              4
+             </div>
+            <button onclick="showNumber1()">
+            ▶
+            </button>
+        `;
+        }
+
+        function show1() {
+            blankAll();
+            document.getElementById('sandersTag1').innerHTML =/*HTML*/`sdfjosdjogj
+            osdojgojsdgjsjodgsds
+
+            <h1>dgsgsgdfhdhfgfgjfg</h1>
+            
+            jfgjfgjfgjfggfgdfgdfgdgdfg`;
+        }
+
+        function show2() {
+            blankAll();
+            document.getElementById('sandersTag2').innerHTML =/*HTML*/`sdfjosdjogj
+            osdojgojsdgjsjodgsds
+
+            <h1>dgsgsgdfhdhfgfgjfg</h1>
+            
+            jfgjfgjfgjfggfgdfgdfgdgdfg`;
+        }
+
+        function blankAll() {
+            document.getElementById('sandersTag1').innerHTML = ``
+            document.getElementById('sandersTag2').innerHTML = ``
+        }
+    </script>
+</body>
+
+</html>

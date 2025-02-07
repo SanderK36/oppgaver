@@ -7,7 +7,7 @@
 </head>
 <body>
     Poeng: <span id="points">0</span>
-    <button onclick="addPoints()">Klikk her</button>
+    <button onclick="updateView()">Klikk her</button>
     <button onclick="upgrade()">Oppgrader</button>
 
     <script>
@@ -16,6 +16,14 @@
         let points = 0;
         let pointsPerClick = 1;
         let upgradeCost = 20;
+
+
+        //View
+        function updateView() {
+            document.getElementById('points').innerHTML = points;
+        }
+
+        // Controller
 
         function addPoints() {
             points += pointsPerClick;
@@ -30,9 +38,6 @@
             } 
         }        
 
-        function showPoints() {
-            document.getElementById('points').innerHTML = points;
-        }
     </script>
 </body>
 </html>

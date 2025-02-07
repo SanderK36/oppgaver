@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="result" id="resultBox">Result:</div>
+
+    <script>
+        let numberOne = 50;
+        let numberTwo = 45;
+
+        let textNumber = "30";
+        
+        check()
+        function check() {
+            OrCheck()
+        }
+
+        function SetTextToTrue(){
+            document.getElementById('resultBox').innerHTML += true;
+        }
+
+        function SetTextToFalse() {
+            document.getElementById('resultBox').innerHTML += false;
+        }
+
+        function NotEqualTo() {
+            if(numberOne != numberTwo) {
+                SetTextToTrue()
+            }
+            else{
+                SetTextToFalse()
+            }
+        }
+
+        function EqualTo() {
+            if(numberOne == textNumber) {
+                SetTextToTrue()
+            }
+            else{
+                SetTextToFalse()
+            }
+        }
+
+        function LessThan() {
+            if (numberOne < numberTwo) {
+                SetTextToTrue()
+            }
+            else {
+                SetTextToFalse()
+            }
+        }
+
+        function LargerThan() {
+            if(numberOne > numberTwo) {
+                SetTextToTrue()
+            }
+            else{
+                SetTextToFalse()
+            }
+        }
+
+        function AndCheck() {
+            if (numberOne < 20 && numberOne > numberTwo) {
+                SetTextToTrue()
+            }
+            else {
+                SetTextToFalse()
+            }
+        }
+
+        function OrCheck() {
+            if(numberOne >50 || numberOne > numberTwo) {
+                SetTextToTrue()
+            }
+            else SetTextToFalse()
+        }
+    </script>
+</body>
+</html>

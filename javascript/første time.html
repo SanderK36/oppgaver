@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="header">Hei på deg</h1>
+    <div id="buttons">
+    <button onclick="changeHeader()">Change header</button>
+    <button onclick="changeButtons()">Change button</button>
+    <button onclick="changeAll()">Change everything</button>
+</div>
+
+<script>
+    function changeHeader() {
+        document.getElementById('header').innerHTML = 'hei';
+    }
+    
+    function changeButtons() {
+        document.getElementById('buttons').innerHTML = 'Buttons changed';
+    }
+
+    function changeAll() {
+        changeHeader();
+        changeButtons();
+    }
+        
+
+</script>
+</body>
+</html>

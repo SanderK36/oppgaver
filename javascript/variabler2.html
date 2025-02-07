@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const test ="hei"; //sti til en div (konstant verdi, kan ikke endres)
+
+        let test2 = "heisann"; //kan endres - let er tilgjengelig i sitt område/scope
+
+        var test3 = "yoo"; // kan endres- er tilgjengelig i større scope
+        function testScopes() {
+            var hello = "Var Hello";
+            let hello2 = "let Hello";
+
+            console.log(hello, hello2); // Var Hello & Let Hello
+
+            {
+                var yo = "Var Yo i obj";
+                let yo2 = "Let Yo i obj";
+                console.log(yo, yo2); // var yo & let yo
+            }
+
+            console.log(yo); // Var yo
+            console.log(yo2); // error! Let får man bare tak i i samme scope, her er den pakket inn 
+        }
+    </script>
+</body>
+</html>

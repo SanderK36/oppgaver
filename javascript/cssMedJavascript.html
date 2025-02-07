@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .part {
+        background-color: lightgray;
+        margin: 10px;
+      }
+      .layout1 {
+        display: flex;
+        align-items: start;
+      }
+      .layout2 {
+        display: flex;
+        align-items: end;
+      }
+      .layout3 {
+        display: grid;
+        grid-template-columns: auto auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button onclick="layout1()">Layout flexbox alignItems start</button>
+    <button onclick="layout2()">Layout flexbox alignItems end</button>
+    <button onclick="layout3()">Layout grid</button>
+    <div id="container">
+        <div class="part">lav og smal div.</div>
+        <div class="part">
+            lav og bred div. lav og bred div. lav og bred div. lav og bred div.
+        </div>
+      <div class="part">
+        Høy <br />
+        og <br />
+        smal <br />
+        div <br />
+      </div>
+      <div class="part">
+        Høy og bred div. Høy og bred div. Høy og bred div. Høy og bred div.
+        <br />
+        Høy og bred div. Høy og bred div. Høy og bred div. Høy og bred div.
+        <br />
+        Høy og bred div. Høy og bred div. Høy og bred div. Høy og bred div.
+        <br />
+        Høy og bred div. Høy og bred div. Høy og bred div. Høy og bred div.
+        <br />
+      </div>
+    </div>
+    <script>
+        function layout1() {
+            document.getElementById('container').classList = [];
+            document.getElementById('container').classList.add('layout1');
+        }
+        function layout2() {
+            document.getElementById('container').classList = [];
+            document.getElementById('container').classList.add('layout2');
+        }
+
+        function layout3() {
+            document.getElementById('container').classList = [];
+            document.getElementById('container').classList.add('layout3');
+        }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin-left: 10px;
+      }
+      #inventory{
+        display: grid;
+        grid-template-columns: 200px 200px 200px;
+        grid-template-rows: 200px 200px 200px;
+      }
+      .card{
+        display: flex;
+        border: 2px solid black;
+        align-items: center;
+        justify-content: center;
+        background-color: grey;
+      }
+
+      #itemBox {
+        border: 2px solid;
+        height: 100px;
+        width: 100px;
+        background-color: greenyellow;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        cursor: pointer;
+      }
+
+        
+       
+      
+    </style>
+  </head>
+  <body>
+    <div id="mainDiv">
+      <button onclick="OpenInventory()">Open</button>
+      <button onclick="CloseInventory()">Close</button>
+      <div id="inventory"></div>
+      <div id="item"></div>
+      <div id="test" onclick="moveItem()">
+        <div id="itemBox">Item</div>
+      </div>
+      
+    </div>
+
+  
+
+
+      <script>
+        let box1 = "";
+        function OpenInventory(){
+          document.getElementById('inventory').innerHTML=`
+          
+          <div id="box1" class="card">${box1}</div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+            
+          
+          `;
+        }
+
+        function CloseInventory(){
+          document.getElementById("inventory").innerHTML=``;
+          
+        }
+
+        function moveItem(){
+          document.getElementById("test").innerHTML='';
+          box1=`
+          <div id="itemBox" onclick="returnItem()">Item</div>`
+          // document.getElementById("box1").innerHTML=box1;
+          OpenInventory()
+        }
+
+        function returnItem(){
+          box1 = ""
+          // document.getElementById("box1").innerHTML='';
+          
+          document.getElementById("test").innerHTML=`
+          <div id="itemBox">God Helg :)</div>
+          `
+          
+          console.log(document.getElementById("test").innerHTML)
+          OpenInventory()
+        }
+
+      </script>
+
+  </body>
+</html>

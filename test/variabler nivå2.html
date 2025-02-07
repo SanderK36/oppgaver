@@ -4,21 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+
+        .color-box, .empty-box {
+            width: 100px;
+            height: 100px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            margin: 10px;
+            border: 2px solid black;
+            font-weight: bold;
+            color: white;
+        }
+
+        #red {
+            background-color: red;
+        }
+
+        #blue {
+            background-color: blue;
+        }
+
+        #green {
+            background-color: green;
+        }
+
+        .selected {
+            border: 4px solid yellow; /*Highlight fargen du har valgt*/
+        }
+
+        .empty-box {
+            background-color: white;
+            border: 2px solid gray;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <div id="blue" style="border: 2px solid black; height: 100px; width: 100px; display: flex; justify-content: center; text-align: center; margin: 10px;" onclick="bgColor1()">Blue</div>
+    
+    <h2>Velg en farge!</h2>
+    <div id="red" class="color-box" onclick="chooseColor('red')">Rød</div>
+    <div id="blue" class="color-box" onclick="chooseColor('blue')">Blå</div>
+    <div id="green" class="color-box" onclick="chooseColor('green')">Grønn</div>
 
-    <div id="Red" style="border: 2px solid black; height: 100px; width: 100px; display: flex; justify-content: center; text-align: center; margin: 10px;" onclick="bgColor2()">Red</div>
 
-    <div id="green" style="border: 2px solid black; height: 100px; width: 100px; display: flex; justify-content: center; text-align: center; margin: 10px;" onclick="bgColor3()">Green</div>
+    <h2>Velg en boks!</h2>
+    <div id="box1" class="empty-box" onclick="selectBox(this)"></div>
+    <div id="box2" class="empty-box" onclick="selectBox(this)"></div>
 
+    <br><br>
+
+    <button onclick="setBackground()">Endre farge på bakgrunnen</button>
+    <button onclick="boxBackground()">Endre farge på boksen</button>
 
     <script>
-        var blueDiv = document.getElementById('blue')
-        function bgColor1() {
+        let chosenColor = null; // Valgt farge
+        let selectedBox = null; // Valgt tom boks
 
+        function chooseColor(color){
+            chosenColor = color;
         }
+
+        function selectBox(box) {
+        selectedBox = box;
+        }
+
+        function setBackground() {
+            document.body.style.backgroundColor = chosenColor;
+        }
+
+        function boxBackground() {
+            selectedBox.style.backgroundColor = chosenColor;
+        }
+        
     </script>
-    
 </body>
+
+
 </html>

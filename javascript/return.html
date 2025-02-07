@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="mainDiv"></div>
+        <button onclick="createAndShowHtml('green', 'Hello World', 30, 'aqua')">test1</button>
+        <button onclick="createAndShowHtml('gray', 'what`s up?', 20, 'red')">test2</button>
+        <button onclick="createAndShowHtml('yellow', 'coding is fun!', 10, 'green')">test3</button>
+
+        <script>
+            function createAndShowHtml(color, text, fontsize, textcolor){
+                document.getElementById('mainDiv').innerHTML = `
+                <div ${createStyle(color, fontsize, textcolor)}>${text} </div>
+                `
+            }
+
+            function createStyle(color, fontsize, textcolor){
+                return `style="${createBackgroundColor(color)}; ${createFontSize(fontsize)}; ${changeTextColor(textcolor)}"`
+            }
+
+            function createBackgroundColor(color){
+                return `background-color: ${color};`
+            }
+
+            function createFontSize(fontsize){
+                return `font-size: ${fontsize}px;`
+            }
+
+            function changeTextColor(textcolor) {
+                return `color: ${textcolor};`
+            }
+
+            
+        </script>
+</body>
+</html>

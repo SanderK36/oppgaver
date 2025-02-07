@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="showNum">1</div>
+    <div id="text"></div>
+    <button id="btn" onclick="doubleNum()">doble</button>
+    <button id="btn" onclick="increaseByOne()">øk med 1</button>
+    <button id="btn" onclick="reset()">reset</button>
+    
+
+    <script>
+        let numToShow = 1;
+        let showNumDiv = document.getElementById('showNum')
+
+        function doubleNum(){
+            let newNum = numToShow * 2;
+            numToShow = newNum;
+            text();
+            showNumDiv.innerHTML = numToShow;
+        }
+
+        function increaseByOne() {
+            numToShow++;
+            text();
+            showNumDiv.innerHTML = numToShow;
+        }
+
+        function reset(){
+            numToShow = 1;
+            text();
+            showNumDiv.innerHTML = numToShow;
+        }
+
+        function text() {
+            if(numToShow > 9000) {
+            document.getElementById('text').innerHTML = "ITS OVER 9000!"
+        } else {
+            document.getElementById('text').innerHTML = ""
+        }
+        }
+    </script>
+</body>
+</html>
