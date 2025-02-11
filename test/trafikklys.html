@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #mainDiv {
+            border: 5px solid black;
+            width: 60px;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            margin-left: 50%;
+            margin-top: 5%;
+            padding: 3px;
+            border-radius: 15px;
+           
+        }
+        .rød {
+            border: 2px solid;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: red;
+            opacity: 45%;
+         
+        }
+
+        .orange {
+            border: 2px solid;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            background-color: orange;
+            opacity: 45%;
+            
+        }
+
+        .grønn {
+            border: 2px solid;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            background-color: green;
+            opacity: 45%;
+           
+        }
+
+        #leg {
+            border-left: 6px solid black;
+            height: 200px;
+            position: absolute;
+            margin-left: 987px;
+        }
+
+        .activate {
+            opacity: 100%;
+        }
+
+        #buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 11%;
+            padding: 20px;
+            margin-left: 3%;
+        }
+    </style>
+</head>
+<body onload="lightTimer()">
+<div id="mainDiv">
+    <div id="rød" class="rød srikel"></div>
+    <div id="orange" class="orange sirkel"></div>
+    <div id="grønn" class="grønn sirkel"></div>
+</div>
+
+<div id="leg"></div>
+
+<div id="buttons">
+<button onclick="activateLight('grønn', 'orange', 'rød', 'rød')">rød</button>
+<button onclick="activateLight('grønn', 'grønn', 'rød', 'orange')">rød og oransje</button>
+<button onclick="activateLight('rød', 'orange', 'grønn', 'grønn')">grønn</button>
+<button onclick="activateLight('rød', 'grønn', 'orange', 'orange')">oransje</button>
+</div>
+
+<script>
+
+        function activateLight(divId1, divId2, divId3, divId4){
+            document.getElementById(divId1).classList.remove("activate");
+            document.getElementById(divId2).classList.remove("activate");
+            document.getElementById(divId3).classList.add("activate");
+            document.getElementById(divId4).classList.add("activate");
+        }
+
+        function activateGreen(){
+            activateLight('rød', 'orange', 'grønn', 'grønn');
+            setTimeout(activateOrange, 2000);
+        }
+
+        function activateOrange(){
+            activateLight('rød', 'grønn', 'orange', 'orange'); 
+        }
+
+        function activateRed(){
+            activateLight('grønn', 'orange', 'rød', 'rød');
+            setTimeout(activateRedAndOrange, 1000)
+
+        }
+
+        function activateRedAndOrange(){
+            activateLight('grønn','orange', 'rød', 'orange')
+            setTimeout(activateGreen, 1000)
+        }
+
+        function lightTimer(){
+            setTimeout(activateRed, 1000)
+        }
+
+</script>
+</body>
+</html>

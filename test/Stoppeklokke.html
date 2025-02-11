@@ -23,8 +23,9 @@
 
 
         function timeStart() {
-            
-            setInterval(countSeconds, 1000);
+            if (!timer) {
+                timer = setInterval(countSeconds, 1000);
+            }
         }
 
         function countSeconds() {
@@ -33,9 +34,9 @@
         }
 
         function pause() {
-            roundTime.innerHTML += /*HTML*/`<li>${seconds-1}</li>`;
+            roundTime.innerHTML += /*HTML*/`<li>${seconds}</li>`;
             clearInterval(timer);
-            seconds = 0;
+            timer = null;
         }
 
         function reset() {

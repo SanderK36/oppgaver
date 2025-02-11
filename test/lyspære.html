@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #mainDiv {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #lysPære{
+            border: 2px solid transparent ;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: darkgray;
+            margin: 50px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            transition: background-color 0.3s ease-in-out;
+            border-radius: 20px;
+        }
+
+        .lysPå{
+            background-color: yellow !important;
+            --webkit-box-shadow:0px 0px 105px 45px rgba(248,255,46,0.9);
+            -moz-box-shadow: 0px 0px 105px 45px rgba(248,255,46,0.9);
+            box-shadow: 0px 0px 105px 45px rgba(248,255,46,0.9);
+
+        }
+    </style>
+</head>
+<body>
+    <div id="mainDiv">
+    <div class="lysPå" id="lysPære" onclick="bryter()">Lyspæra er på!</div>
+</div>
+
+<script>
+    let knapp = false;
+
+    function bryter() {
+        let lysPære = document.getElementById('lysPære');
+
+        if(lysPære.classList.contains("lysPå")) {
+            lysPære.classList.remove("lysPå");
+            lysPære.textContent = "Lyspæra er av!"
+        } else {
+            lysPære.classList.add("lysPå");
+            lysPære.textContent = "Lyspæra er på!"
+        }
+    }
+</script>
+</body>
+</html>

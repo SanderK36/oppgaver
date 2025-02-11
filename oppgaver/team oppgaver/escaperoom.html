@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: gray;
+        }
+        #mainDiv {
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid black;
+            margin-left: 40%;
+            margin-right: 40%;
+            margin-top: 100px;
+            border-radius: 25px;
+            background-color: lightgray;
+            box-shadow: 0px 15px 15px;
+        }
+
+        #submitDiv {
+            display: flex;
+            margin-left: 43%;
+            margin-top: 35px;
+            height: 50px;
+            font-size: 50px;
+        }
+
+        #input {
+            border-radius: 15px;
+            font-size: 20px;
+            background-color: lightgray;
+        }
+
+        #btn1 {
+            border-radius: 15px;
+            background-color: lightgray;
+            cursor: pointer;
+        }
+
+        #btn2 {
+            border-radius: 15px;
+            background-color: lightgray;
+            cursor: pointer;
+            height: 60px;
+            width: 75px;
+        }
+        
+        #rightAnswerLvl1 {
+            margin-left: 30%;
+            margin-top: 20px;
+            font-size: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #wrongAnswerLvl1 {
+            margin-left: 40%;
+            margin-top: 20px;
+            font-size: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #nextLevel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 25%;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div id="mainDiv">
+    <h1>Hva er 2 + 2?</h1>
+    </div>
+        <div id="submitDiv">
+    <input id="input" type="text">
+    <button id="btn1" onclick="checkAnswerLvl1()">Submit</button>
+</div>
+<div class="rightAnswer" id="rightAnswerLvl1"></div>
+<div class="wrongAnswer" id="wrongAnswerLvl1"></div>
+
+
+<div id="level2Div"></div>
+
+
+
+    <script>
+        let rightAnswerForLvl1 = 4;
+        let rightAnswerForLvl2 = 1981;
+
+        function checkAnswerLvl1() {
+            let input = document.getElementById('input').value;
+            if (input == rightAnswerForLvl1){
+                document.getElementById('rightAnswerLvl1').innerHTML= /*HTML*/
+                `<div id="nextLevel">Riktig svar!! Trykk her for å gå videre ->
+                    <button id="btn2" onclick="goToLvl2()">Level 2</button>
+                    </div> 
+                     `;
+
+                document.getElementById('wrongAnswerLvl1').innerHTML = ""
+
+            } else {
+                document.getElementById('wrongAnswerLvl1').innerHTML = "Feil svar! Prøv igjen"
+                document.getElementById('rightAnswerLvl1').innerHTML= ""
+            }
+        }
+
+    </script>
+</body>
+</html>

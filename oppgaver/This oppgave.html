@@ -5,36 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .mainDiv > div {
-            border: 5px solid red;
-            margin: 25px;
-            display: grid;
+        .mainDiv {
+            display: flex;
             justify-content: center;
-            font-size: 50px;
+            align-items: center;
+            border: 2px solid black;
+            height: 100px;
+            width: 400px;
+            background-color: darkgray;
+            border-radius: 10px;
+            margin-top: 100px;
         }
 
-        .mainDiv {
-            width: 100px;
-            height: 200px;
-            
+        .key {
+            border: 1px solid black;
+            margin: 10px;
+            width: 50px;
+            height: 50px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            background-color: white;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #inputField {
+            height: 40px;
+            width: 250px;
+            font-size: 50px;
+            margin-top: 50px;
+            margin-left: 50px;
         }
     </style>
 </head>
 <body>
-    <div class="mainDiv">
-    <div id="tastatur" onclick="pushedLetter(this)">A</div>
-    <div id="tastatur" onclick="pushedLetter(this)">B</div>
-    <div id="tastatur" onclick="pushedLetter(this)">C</div>
-    <div id="tastatur" onclick="pushedLetter(this)">D</div>
-    <div id="tastatur" onclick="pushedLetter(this)">E</div>
-    <div id="tastatur" onclick="pushedLetter(this)">F</div>
+        <input type="text" id="inputField">
+        <div class="mainDiv">
+    <div class="key" onclick="pushedLetter(this)">A</div>
+    <div class="key" onclick="pushedLetter(this)">B</div>
+    <div class="key" onclick="pushedLetter(this)">C</div>
+    <div class="key" onclick="pushedLetter(this)">D</div>
+    <div class="key" onclick="pushedLetter(this)">E</div>
+    <div class="key" onclick="pushedLetter(this)">F</div>
+    <div class="key" onclick="pushedLetter(this)">G</div>
+    <div id="clearButton" class="key" onclick="clearInput()">Clear</div>
 </div>
 
     <script>
+        var input = document.getElementById('inputField');
+
+
+
+
         function pushedLetter(htmlElement) {
-            // document.getElementById('tastatur').innerHTML;
-            let letterPressed = htmlElement.innerHTML;
-            console.log(letterPressed);
+          input.value += htmlElement.innerHTML;
+          
+        }
+
+        function clearInput() {
+            input.value = '';
         }
     </script>
 </body>
