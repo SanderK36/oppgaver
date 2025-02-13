@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+      #mainDiv {
+        font-size: 20px;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid black;
+        width: 150px;
+        height: 150px;
+        margin-left: 50%;
+
+      }
+      #inputField {
+        width: 60px;
+        height: 20px;
+        font-size: 20px;
+        margin-left: 25%;
+        text-align: center;
+      }
+
+      #numberTop,
+      #numberBottom {
+        margin-left: 50%;
+      }
+      
+      #text {
+        margin-left: 50%;
+        margin-top: 50px;
+        font-size: 100px;
+        
+      }
+
+      #score {
+        position: absolute;
+        top: 20px;
+        left: 40%;
+        font-size: 20px;
+      }
+
+      #highscore {
+        position: absolute;
+        top: 80px;
+        left: 39%;
+        font-size: 20px;
+      }
+      
+
+    </style>
+  </head>
+  <body>
+    <div id="mainDiv">
+      <div id="numberTop">0</div>
+      <input type="text" id="inputField" />
+      <div id="numberBottom">0</div>
+      <div id="buttons">
+        <button id="submit" onclick="submitGame()">Submit</button>
+        <button id="reset" onclick="resetGame()">Reset</button>
+      </div>
+    </div>
+    <div id="text"></div>
+    <div id="score">points: 0</div>
+    <div id="highscore">Highscore: 0</div>
+
+    <script>
+        let firstNum = 0;
+        let secondNum = 0;
+        let score = 0;
+        let highscore = localStorage.getItem("highscore") ? parseInt(localStorage.getItem("highscore")) : 0;
+        function updateNum(){
+            firstNum = randomizeNum();
+            secondNum = randomizeNum();
+            document.getElementById('numberTop').innerHTML = firstNum;
+            document.getElementById('numberBottom').innerHTML = secondNum;
+        }
+
+        function randomizeNum(){
+            return Math.round(Math.random() * 10);
+        }
+
+        function submitGame(){
+            let userInput = document.getElementById("inputField").value;
+            let correctAnswer;
+
+            if(firstNum > secondNum) {
+                correctAnswer = ">";
+            } else if (firstNum < secondNum) {
+                correctAnswer = "<";
+            } else {
+                correctAnswer = "=";
+            }
+
+            if(userInput === correctAnswer) {
+                score++;
+                document.getElementById("text").innerHTML = "Riktig!!"
+                document.getElementById("text").style.color = "green"
+                document.getElementById("score").innerHTML = "points: " + score;
+                updateNum();
+
+
+                if (score > highscore) {
+                    highscore = score;
+                    localStorage.setItem("highscore", highscore);
+                    document.getElementById("highscore").innerHTML = "Highscore: " + highscore;
+                }
+            } else {
+                document.getElementById("text").innerHTML = "Feil!"
+                document.getElementById("text").style.color = "red"
+            }
+            
+        }
+        function resetGame(){
+          score = 0;
+          document.getElementById("score").innerHTML = "points: " + score;
+          document.getElementById("inputField").value = "";
+          document.getElementById("text").innerHTML = "";
+            updateNum();
+        }
+
+        updateNum();
+    </script>
+  </body>
+</html>

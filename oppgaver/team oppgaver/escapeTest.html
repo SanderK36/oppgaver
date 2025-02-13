@@ -11,6 +11,7 @@
             margin: 0px;
             padding: 0px;
             background-image: url(./enterance.png);
+            background-size: cover;
         }
 
         h1 {
@@ -128,9 +129,9 @@
 let sp1Answer = "4";
 let sp2Answer = "8";
 let sp3Answer = "10";
-let lvl1Img = "url(./escaperoomLVL1.png);"
-let lvl2Img = "url(./escaperoomLVL2.png);"
-let lvl3Img = "url(./escaperoomLVL3.png);"
+let lvl1Img = "url(./escaperoomLVL1.png";
+let lvl2Img = "url(./escaperoomLVL2.png)";
+let lvl3Img = "url(./escaperoomLVL3.png)";
 
    // View
    function leave() {
@@ -171,9 +172,11 @@ function submit(){
     } else {
         document.getElementById('text').innerHTML = "Game over!";
         document.getElementById('text').classList.add('gameOverText');
+        setTimeout(resetGame, 2000);
     }
 }
 function level2(){
+    document.body.style.backgroundImage = lvl2Img;
     document.getElementById('header').innerHTML = "Escape Room Level 2!";
     document.getElementById('spørsmål').innerHTML = "Hva er 4+4";
     document.getElementById("inputField").value = "";
@@ -193,12 +196,14 @@ function submitLevel2() {
     } else {
         document.getElementById('text').innerHTML = "Game over!";
         document.getElementById('text').classList.add('gameOverText');
+        setTimeout(resetGame, 2000);
     }
 
     
 }
 
 function level3(){
+    document.body.style.backgroundImage = lvl3Img;
     document.getElementById('header').innerHTML = "Last Room!";
     document.getElementById('spørsmål').innerHTML = "Hva er 5+5";
     document.getElementById("inputField").value = "";
@@ -217,10 +222,24 @@ function submitLevel3() {
         document.getElementById('text').innerHTML = "Game over!";
         document.getElementById('text').classList.add('gameOverText');
         document.getElementById('text').classList.remove('escapeText');
+        setTimeout(resetGame, 2000);
     }
 
     
 }
+
+function resetGame() {
+    document.body.style.backgroundImage = "url(./enterance.png)";
+    document.getElementById('enterance').innerHTML = /*HTML*/`
+    <div id="leaveText"></div>
+    <div id="enteranceBtns">
+        <button style="font-size: 50px; background-color: darkred;" class="enterHouse" onclick="level1()">Enter</button>
+        <button style="font-size: 50px; " class="leaveHouse" onclick="leave()">Leave</button>
+    </div>
+    `;
+    document.getElementById('level1Div').innerHTML = "";
+}
+
 
     
 </script>
