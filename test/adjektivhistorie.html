@@ -4,12 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .story {
+            display: flex;
+        }
+
+        .buttons {
+            display: grid;
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app">
+        
+    </div>
 
     <script>
-        
+        let adjektiv = "___"
+        let substantiv = "___"
+        let verb = "___"
+        let substantiv2 = "___"
+
+        updateView();
+        function updateView(){
+            document.getElementById('app').innerHTML=/*HTML*/`
+            <div class="story">
+            <div>Once there was a&nbsp;</div>
+            <div id="adjektiv">${adjektiv}</div>&nbsp;
+            <div id="substaniv">${substantiv}</div>&nbsp;
+            <div>that&nbsp;</div>
+            <div id="verb">${verb}</div>&nbsp;
+            <div>in the</div>&nbsp;
+            <div id="substantiv2">${substantiv2}</div>&nbsp;
+            and great things happend..The end
+            
+        </div>
+
+        <div class="buttons">
+            <button onclick = "setSub(this)">Cat</button>
+            <button onclick = "setVerb(this)">Jumped</button>
+            <button onclick = "setSub2(this)">Wall</button>
+            <button onclick = "setSub2(this)">Pool</button>
+            <button onclick = "setSub(this)">Man</button>
+            <button onclick = "setAdj(this)">Red</button>
+            <button onclick = "setAdj(this)">Green</button>
+            <button onclick = "setVerb(this)">Stared</button>
+        </div>
+            `;
+        }
+
+        function setAdj(AdjButton) {
+            adjektiv = AdjButton.innerText;
+            updateView();
+        }
+
+        function setSub(subButton) {
+            substantiv = subButton.innerText;
+            updateView();
+        }
+
+        function setVerb(verbButton) {
+            verb = verbButton.innerText;
+            updateView();
+        }
+
+        function setSub2(sub2Button) {
+            substantiv2 = sub2Button.innerText;
+            updateView();
+        }
     </script>
 </body>
 </html>

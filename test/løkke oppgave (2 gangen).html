@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="printNum()">Print</button>
+    <div id="numbers"></div>
+
+    <script>
+        function printNum() {
+            let stopValue = 20;
+            for(let multiply = 2; multiply<=stopValue; multiply += 2) {
+                document.getElementById('numbers').innerHTML += '<li>' + multiply + '</li>';
+            }
+        }
+    </script>
+</body>
+</html>
