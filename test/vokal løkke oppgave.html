@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        let coolStr = "Hallo hva skjer"
+        let text = document.getElementById('app')
+        let aCounter = 0;
+        // let eCounter = 0;
+        // let iCounter = 0;
+        // let oCounter = 0;
+        // let uCounter = 0;
+        // let yCounter = 0;
+        // let æCounter = 0;
+        // let øCounter = 0;
+        // let åCounter = 0;
+
+        updateView();
+        function updateView() {
+            text.innerHTML = /*HTML*/`
+            <button onclick = countVowels()>Print</button>
+                <ul>
+                    <li>A: ${aCounter}</li>
+                    </ul>
+            `;
+        }
+
+        function countVowels(){
+            reset()
+            for(let i = 0; i < coolStr.length; i++){
+                if(coolStr[i].toLowerCase() == 'a') {
+                    aCounter++;
+                }
+            }
+
+            updateView();
+        }
+
+        function reset() {
+            aCounter = 0;
+        }
+
+
+    </script>
+</body>
+</html>
