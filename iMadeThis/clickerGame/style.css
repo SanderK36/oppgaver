@@ -1,0 +1,37 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: darkslategrey;
+}
+
+#upgradeBtns{
+    display: flex;
+    margin-left: 30%;
+    margin-top: 10%;
+    height: 50px;
+    gap: 10px;
+}
+
+#pointsBtn{
+    display: flex;
+    margin-left: 47%;
+    margin-top: 5%;
+    height: 100px;
+    width: 200px;
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+#showPoints {
+    display: flex;
+    margin-left: 47%;
+    margin-top: 5%;
+    height: 100px;
+    width: 200px;
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    border: 5px solid white;
+    background-color: white;
+}

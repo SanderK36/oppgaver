@@ -6,9 +6,14 @@
     <title>Clicker 3000</title>
 </head>
 <body>
-    Poeng: <span id="points">0</span>
+    Points: <span id="points">0</span>
+    Points per click: <span id="pointsPerClick">1</span> <br>
+    Upgrade price: <span id="upgradeCost">20</span> <br>
+    Auto-clickers: <span id="autoClickers">0</span> <br>
+    Auto-clicker price: <span id="autoClickerCost">100</span> <br>
     <button onclick="addPoints()">Klikk her</button>
     <button onclick="upgrade()">Oppgrader</button>
+    <button onclick="buyAutoClicker()">Kjøp Auto-Clicker</button>
 
     <script>
 
@@ -16,6 +21,8 @@
         let points = 0;
         let pointsPerClick = 1;
         let upgradeCost = 20;
+        let autoClickers = 0;
+        let autoClickerCost = 100;
 
         function addPoints() {
             points += pointsPerClick;
@@ -26,12 +33,49 @@
             if(points >= upgradeCost) {
                 pointsPerClick++;
                 points -= upgradeCost;
+                upgradeCost = Math.floor(upgradeCost * 4.5);
                 showPoints();
+                showUpgradeCost();
+                showPointsPerClick();
             } 
-        }        
+        }
+
+        function buyAutoClicker() {
+            if(points >= autoClickerCost) {
+                autoClickers++;
+                points -= autoClickerCost;
+                autoClickerCost = Math.floor(autoClickerCost * 1.5);
+                showPoints();
+                showAutoClickers();
+                showAutoClickerCost();
+            }
+        }
+
+        function autoClick() {
+            points += autoClickers;
+            showPoints();
+        }
+
+        setInterval(autoClick, 1000); // Auto-click every second
 
         function showPoints() {
             document.getElementById('points').innerHTML = points;
+        }
+
+        function showUpgradeCost() {
+            document.getElementById('upgradeCost').innerHTML = upgradeCost;
+        }
+
+        function showPointsPerClick() {
+            document.getElementById('pointsPerClick').innerHTML = pointsPerClick;
+        }
+
+        function showAutoClickers() {
+            document.getElementById('autoClickers').innerHTML = autoClickers;
+        }
+
+        function showAutoClickerCost() {
+            document.getElementById('autoClickerCost').innerHTML = autoClickerCost;
         }
     </script>
 </body>

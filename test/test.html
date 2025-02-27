@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        const letters= ['a', 'e', 'i', 'o', 'u', 'y', 'æ', 'ø', 'å',]
+        const amount = [0, 0, 0, 0, 0, 0, 0, 0, 0,]
+        let text = document.getElementById('app')
+
+
+        updateView()
+        function updateView() {
+            text.innerHTML = /*HTML*/`
+            <input type="text" onchange="count(this.value)" autofocus
+            
+            <ul>
+                ${printInfo()}
+                </ul>
+
+            `;
+        }
+
+        function count(coolStr){
+            reset()
+            for(let i = 0; i < amount.length; i++){
+                for(let j = 0; j < letters.length; j++){
+                    if(coolStr[i].toLowerCase() == letters[j]){
+                        amount[j]++
+                    }
+                }
+            }
+            updateView()
+        }
+
+        function reset(){
+            for(let i = 0; i < amount.length; i++){
+                amount[i] = 0
+            }
+        }
+
+        function printInfo(){
+            let html=''
+            for(let i = 0; i < letters.length; i++){
+                html+=/*HTML*/`
+                <li>${letters[i]}: ${amount[i]}</li>
+                `;
+            }
+            return html
+        }
+
+    </script>
+</body>
+</html>

@@ -4,38 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
 </head>
 <body>
     <div id="app"></div>
 
     <script>
-        let coolStr = "Hallo hva skjer"
+        let coolStr = ""
         let text = document.getElementById('app')
-        let aCounter = 0;
-        // let eCounter = 0;
-        // let iCounter = 0;
-        // let oCounter = 0;
-        // let uCounter = 0;
-        // let yCounter = 0;
-        // let æCounter = 0;
-        // let øCounter = 0;
-        // let åCounter = 0;
+        let aCounter = 0, eCounter = 0, iCounter = 0, oCounter = 0, uCounter = 0, yCounter = 0, æCounter = 0, øCounter = 0, åCounter = 0;
 
         updateView();
         function updateView() {
             text.innerHTML = /*HTML*/`
-            <button onclick = countVowels()>Print</button>
+            <input type="text" id="inputText" placeholder="Skriv noe her" oninput="coolStr = this.value">
+             <br>
+
+             ${coolStr} <br>
+
+            <button onclick = countVowels(coolStr)>Check vowels</button>
                 <ul>
                     <li>A: ${aCounter}</li>
-                    </ul>
+                    <li>E: ${eCounter}</li>
+                    <li>I: ${iCounter}</li>
+                    <li>O: ${oCounter}</li>
+                    <li>U: ${uCounter}</li>
+                    <li>Y: ${yCounter}</li>
+                    <li>Æ: ${æCounter}</li>
+                    <li>Ø: ${øCounter}</li>
+                    <li>Å: ${åCounter}</li>
+                </ul>
             `;
         }
 
-        function countVowels(){
+        function countVowels(text){
             reset()
             for(let i = 0; i < coolStr.length; i++){
                 if(coolStr[i].toLowerCase() == 'a') {
                     aCounter++;
+                }
+            }
+            for(let i = 0; i < coolStr.length; i++){
+                if(coolStr[i].toLowerCase() == 'e') {
+                    eCounter++;
+                }
+            }
+
+            for(let i = 0; i < coolStr.length; i++){
+                if(coolStr[i].toLowerCase() == 'i') {
+                    iCounter++;
+                }
+            }
+
+            for(let i = 0; i < coolStr.length; i++){
+                if(coolStr[i].toLowerCase() == 'o') {
+                    oCounter++;
+                }
+            }
+
+            for(let i = 0; i < coolStr.length; i++){
+                if(coolStr[i].toLowerCase() == 'u') {
+                    uCounter++;
+                }
+            }
+            for(let i = 0; i < coolStr.length; i++){
+                if(coolStr[i].toLowerCase() == 'y') {
+                    yCounter++;
+                }
+            }
+
+            for(let i = 0; i < coolStr.length; i++){
+                if(coolStr[i].toLowerCase() == 'æ') {
+                    æCounter++;
+                }
+            }
+
+            for(let i = 0; i < coolStr.length; i++){
+                if(coolStr[i].toLowerCase() == 'ø') {
+                    øCounter++;
+                }
+            }
+
+            for(let i = 0; i < coolStr.length; i++){
+                if(coolStr[i].toLowerCase() == 'å') {
+                    åCounter++;
                 }
             }
 
@@ -43,7 +99,7 @@
         }
 
         function reset() {
-            aCounter = 0;
+            aCounter = eCounter = iCounter = oCounter = uCounter = yCounter = æCounter = øCounter = åCounter = 0;
         }
 
 
