@@ -6,21 +6,40 @@
     <title>Reverse Text</title>
 </head>
 <body>
-
-    <input type="text" id="inputText" placeholder="Skriv noe her">
-    <button onclick="reverseText()">Reverser</button>
-    <p id="output"></p>
+    <div id="app"></div>
 
     <script>
-        function reverseText() {
-            let input = document.getElementById("inputText").value;
+        //Model
+        const model = {
+            app:{
+                view:document.querySelector('#app'),
+            },
+            input:{
+                text: ''
+            },
+            data:{},
+        }
+        
+        //View
+        updateView();
+        function updateView() {
+            model.app.view.innerHTML = /*HTML*/`
+            <input type="text" placeholder="Skriv noe her" onchange="reverseText(this.value)">
+            <div>${model.input.text}</div>
+            `;
+        }
+
+
+        //Controller
+        function reverseText(inputElement) {
             let reversed = "";
 
-            for (let i = input.length - 1; i >= 0; i--) {
-                reversed += input[i];
+            for (let i = inputElement.length - 1; i >= 0; i--) {
+                reversed += inputElement[i];
             }
 
-            document.getElementById("output").innerText = "Reversert tekst: " + reversed;
+            model.input.text = reversed;
+            updateView();
         }
     </script>
 
