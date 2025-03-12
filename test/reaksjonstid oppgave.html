@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reaksjonstid Oppgave</title>
+    <style>
+        .circles {
+            display: grid;
+            grid-template-columns: repeat(5, 105px);
+            gap: 5px;
+        }
+        .lamp {
+            border: 1px solid black;
+            border-radius: 50%;
+            background-color: rgb(48, 46, 46);
+            color: black;
+            height: 100px;
+            width: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightOn {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        let app = document.getElementById('app');
+        let selectedLampIndex = -1;
+        let startTime;
+        let reactionTime = '';
+
+        function updateView() {
+            let html = `<div class="circles">`;
+            for (let i = 0; i < 25; i++) {
+                let lampClass = i === selectedLampIndex ? 'lamp lightOn' : 'lamp';
+                let onClick = i === selectedLampIndex ? 'onclick="handleLampClick()"' : '';
+                html += `<div class="${lampClass}" ${onClick}></div>`;
+            }
+            html += `</div>`;
+            html += `<p>Reaksjonstid: ${reactionTime}</p>`;
+            app.innerHTML = html;
+        }
+
+        function randomLamp() {
+            selectedLampIndex = Math.floor(Math.random() * 25);
+            startTime = new Date().getTime();
+            updateView();
+        }
+
+        function handleLampClick() {
+            let finishTime = new Date().getTime();
+            let spentMilliseconds = Math.floor(finishTime - startTime);
+            let spentSeconds = spentMilliseconds / 1000;
+            reactionTime = `${spentSeconds} sekunder`;
+            randomLamp();
+        }
+
+        // Kall randomLamp når siden laster
+        randomLamp();
+    </script>
+</body>
+</html>

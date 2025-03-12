@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Oppgave 1</title>
+</head>
+
+<div id="app"></div>
+
+<body>
+   <script>
+let pro =[
+
+ drinks = [
+{
+    name: "Fanta",
+    price: 25
+},
+
+{
+    name: "Cola",
+    price: 20
+},
+
+{
+    name: "Solo",
+    price: 30
+},
+ {
+    name: "Red Bull",
+    price: 25
+}
+
+],
+
+snacks = [
+{
+    name: "Chips",
+    price: 15
+},
+
+{
+    name: "Candy",
+    price: 10
+},
+
+{
+    name: "Chocolate",
+    price: 20
+},
+ {
+    name: "Gum",
+    price: 5
+}]
+
+]
+let cart = []
+
+let app = document.getElementById("app");
+updateView()
+
+
+function updateView(){
+app.innerHTML= /*HTML*/`
+<H1>Shop</H1>
+<ul>${viewItems()}</ul>
+<h2>Cart</h2>
+<ul>${viewCart()}</ul>
+`;
+}
+
+function viewItems(){
+    let html = /*HTML*/`<h2>Drinks</h2><ul>`;
+        for(let j = 0; j < pro[0].length; j++){
+            html +=/*HTML*/`
+            <li>
+                <p>${pro[0][j].name}</p>
+                <p>${pro[0][j].price}kr</p>
+                <button onclick="addToCart('drinks', ${j})">Add to cart</button>
+            </li>
+            `;
+        }
+        html += /*HTML*/`</ul><h2>Snacks</h2><ul>`;
+            for(let j = 0; j < pro[1].length; j++){
+                html +=/*HTML*/`
+                <li>
+                <p>${pro[1][j].name}</p>
+                <p>${pro[1][j].price}kr</p>
+                <button onclick="addToCart('snacks', ${j})">Add to cart</button>
+            </li>
+                `;
+            }
+            html += /*HTML*/`</ul>`;
+            return html;
+}
+
+function viewCart(){
+    let html = "";
+    for(let i = 0; i < cart.length; i++){
+        html += /*HTML*/`
+        <li>
+            <p>${cart[i].name}</p>
+            <p>${cart[i].price}kr</p>
+        </li>
+        `;
+    }
+    return html;
+}
+
+
+function addToCart(category, index){
+    if(category == 'drinks'){
+        cart.push(pro[0][index]);
+    } else if(category == 'snacks'){
+        cart.push(pro[1][index]);
+    }
+    updateView();
+}
+   </script>
+</body>
+</html>

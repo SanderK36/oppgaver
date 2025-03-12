@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .ball8 {
+            height: 500px;
+            width: 500px;
+            border-radius: 50%;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .whiteCircle {
+            background-color: white;
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 0 0 10px black;
+        }
+
+        .font {
+            font-size: 150px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        let answers = [
+            "Yes",
+            "No",
+            "Maybe",
+            "Ask again later",
+            "I don't know",
+            "I'm not sure",
+            "I'm sure",
+            "I'm positive",
+            "I'm negative",
+            "Dosen't matter",
+            "It's your choice",
+            "fuck no",
+            "fuck yeah",
+            "10/10!"
+        ];
+        let answer = '8';
+        let classFont = 'font';
+        let app = document.getElementById("app");
+
+
+        updateView();
+        function updateView(){
+            app.innerHTML = /*HTML*/`
+            <div class="ball8">
+                <div class="whiteCircle" onclick="getRandomAnswer()">
+                    <div class="${classFont}">
+                        ${answer}
+                    </div>
+                </div>
+            </div>
+            `;
+        }
+
+        function getRandomAnswer(){
+            let randomIndex = Math.floor(Math.random() * answers.length)
+            let answerText = answers.length > 0 ? answers[randomIndex] : 'Ask a question';
+            classFont = '';
+            answer = answerText;
+            answers.splice(randomIndex, 1);
+            updateView();
+        }
+    </script>
+</body>
+</html>
