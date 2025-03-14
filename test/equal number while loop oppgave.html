@@ -5,24 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body> 
-    <button onclick="generateRandomNumbers()">Print</button>
+<body>
     <div id="app"></div>
+
     <script>
-        function generateRandomNumbers() {
-    let num1 = Math.floor(Math.random() * 100) + 1;
-    let num2 = Math.floor(Math.random() * 100) + 1;
+        let app = document.getElementById('app');
 
-    while (num1 !== num2) {
-        num1 = Math.floor(Math.random() * 100) + 1;
-        num2 = Math.floor(Math.random() * 100) + 1;
-    }
+        app.innerHTML = /*HTML*/`
+        <button onclick="printNum()">Print</button><br>
+        `;
 
-    document.getElementById('app').innerHTML = `Equal number found: ${num1}`;
-}
-
-generateRandomNumbers();
-            
+        function printNum(){
+            let i = 1;
+            while(i <= 1 ){
+               let num1 = Math.floor(Math.random() * 10 + 1);
+               let num2 = Math.floor(Math.random() * 10 + 1);
+               if(num1 === num2) {
+                app.innerHTML += `${num1} , ${num2} Equal number found!<br>`;
+               } else {
+                app.innerHTML += `${num1} , ${num2}<br>`;
+               }
+               i++;
+        }
+        }
+        
     </script>
 </body>
 </html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let allColors = ['red', 'lightgreen', 'green', 'blue', 'yellow', 'gray', 'black'];
+
+        function hasColor(colors, searchColor){
+
+        }
+
+        function hasColorWithName(colors, searchColor){
+            for(let color of colors) {
+                if(color === searchColor)
+                    return true;
+            }
+            return false;
+        }
+
+        function hasColorWithNames(colors, colorName) {
+            for(let color of colors) {
+                if(color.includes(colorname))
+                return true;
+            }
+
+            return false;
+        }
+
+        function searchForColorByName(color, colorName) {
+            for(let color of colors) {
+                if(color.includes(colorName))
+                    return color;
+            }
+            return null;
+        }
+
+        function getColorsNamesByName(colors, colorName){
+            let matchingColors = [];
+            for(let color of colors) {
+                if(color.includes(colorName))
+                    matchingColors.push(color);
+            }
+
+            return matchingColors;
+        }
+
+        function countColorsWithName(colors, colorName){
+            let count = 0;
+            for(let color of colors) {
+                if(color.includes(colorName))
+                count++
+            }
+
+            return count
+        }
+
+        function getLongestColorName(colors){
+            let longestColorName = ''
+            for(let color of colors) {
+                if(color.length > longestColorName.length){
+                    longestColorName = color;
+                }
+            }
+
+            return longestColorName;
+        }
+    </script>
+</body>
+</html>
