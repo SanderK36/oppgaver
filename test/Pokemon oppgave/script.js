@@ -83,9 +83,46 @@ function catchPokemon(){
   caughtPokemonView();
 }
 
-function showPokemon(){
-  console.log(trainer.trainerPokemon);
+function showPokemon() {
+  // Hvis vi har Pokémon i trainerPokemon, vis dem
+  if (trainer.trainerPokemon.length > 0) {
+    let pokemonList = "";
+    
+    // Bruker en vanlig for-løkke for å iterere gjennom Pokémonene
+    for (let i = 0; i < trainer.trainerPokemon.length; i++) {
+      let pokemon = trainer.trainerPokemon[i];
+      pokemonList += `
+        <div class="pokemonItem">
+          <div>Navn: ${pokemon.name}</div>
+          <div>Lvl: ${pokemon.level}</div>
+          <img src="${pokemon.image}" alt="${pokemon.name}">
+        </div>
+      `;
+    }
+
+    app.innerHTML = /*HTML*/`
+    <div class="pokemonContainer">
+      <h2>Fangede Pokémon:</h2>
+      <div class="pokemonList">${pokemonList}</div>
+      <div class="buttonContainer">
+        <button onclick="updateView()">Finn en annen Pokémon</button>
+        <button onclick="showPokemon()">Vis dine pokemon</button>
+      </div>
+    </div>
+    `;
+  } else {
+    // Hvis ingen Pokémon er fanget, vis en melding
+    app.innerHTML = /*HTML*/`
+    <div class="noPokemonContainer">
+      <h2>Du har ikke fanget noen Pokémon ennå.</h2>
+      <div class="buttonContainer">
+        <button onclick="updateView()">Finn en Pokémon</button>
+      </div>
+    </div>
+    `;
+  }
 }
+
 
 function getRandomPokemon(){
   let randomNum = Math.floor(Math.random() * possiblePokemon.length);
