@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #btns{
+            margin: 10px;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            font-size: 50px;
+        }
+
+        #num{
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        let num = 0;
+        let app = document.getElementById('app')
+
+        updateView();
+        function updateView() {
+        app.innerHTML = /*HTML*/`
+        <button id="btns" onclick="changeNum(1)">+1</button>
+        <p id="num">${num}</p>
+        <button id="btns" onclick="changeNum(-1)">-1</button>
+        `;
+        }
+
+        function changeNum(value){
+            num += value;
+            updateView();
+        }
+    </script>
+</body>
+</html>

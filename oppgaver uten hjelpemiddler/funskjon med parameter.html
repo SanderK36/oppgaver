@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        // Model
+        let parameter = {
+            text: "Endre teksten med å trykke på en av knappene under!",
+            color: "black",
+            fontSize: 20
+        };
+        let app = document.getElementById('app')
+
+        // View
+        updateView();
+        function updateView(){
+            app.innerHTML = /*HTML*/`
+            <div id="text" style="color: ${parameter.color}; font-size: ${parameter.fontSize}px;">${parameter.text}</div>
+            <button onclick="changeText('blue', 'Du endret teksten!', 50)">Change one</button>
+            <button onclick="changeText('red', 'Du endret teksten!', 100)">Change two</button>
+            `;
+        }
+
+        // Controller
+        function changeText(color, text, fontSize){
+                parameter.text = text;
+                parameter.color = color;
+                parameter.fontSize = fontSize;
+                updateView();
+            }
+    </script>
+</body>
+</html>
