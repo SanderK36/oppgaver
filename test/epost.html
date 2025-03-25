@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+
+    <script>
+let app = document.getElementById('app');
+
+updateView();
+function updateView(){
+app.innerHTML = /*HTML*/`
+<input type="email" id="emailInput">
+<button onclick ="checkEmail()">Check</button>
+<div id="result"></div>
+`;
+}
+
+function isValidEmail(text){
+    if (!text.includes("@")){
+        return false;
+    }
+    if (text.includes(" ")){
+        return false;
+    }
+    return true;
+}
+
+function checkEmail(){
+let emailInput = document.getElementById('emailInput').value;
+let result = document.getElementById('result');
+
+    if(isValidEmail(emailInput)){
+        result.innerHTML = "Godkjent!";
+    } else {
+        result.innerHTML = "ikke Godkjent!";
+    }
+}
+    </script>
+</body>
+</html>
