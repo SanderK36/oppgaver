@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #header {
+            text-align: center;
+        }
+
+        #header2{
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 200px;
+
+        }
+
+        #header2 img {
+            
+            width: 200px;
+            height: 200px;
+        }
+
+        #imgs {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+            cursor: pointer;
+        }
+
+        #imgs img {
+            width: 200px;
+            height: 200px;
+            
+        }
+
+        #winnerText {
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        #retryBtn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            margin-left: 47%;
+        }
+
+        #retryBtn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        let selectedByUser = "none";
+        let selectedByComputer = "none";
+        let winner = "none";
+        const app = document.getElementById('app');
+
+        updateView();
+        function updateView(){
+            app.innerHTML = /*HTML*/`
+            <h1 id="header">Rock, paper, scissors!</h1>
+            <div id = "imgs">
+            <img id="rockImg" src="./rock.png" alt="" onclick="userSelect('rock')">
+            <img id="scissorsImg" src="./scissors.png" alt="" onclick="userSelect('scissors')">
+            <img id="paperImg" src="./paper.png" alt="" onclick="userSelect('paper')">
+            </div>
+            `;
+            if(winner != "none"){
+                app.innerHTML = /*HTML*/`
+                <h1 id="header2">You chose ➡️ <img src="./${selectedByUser}.png" alt="${selectedByUser}"><img src="./${selectedByComputer}.png" alt="${selectedByComputer}">⬅️Computer chose</h1>
+                <h1 id="winnerText">${winner} Won!</h1>
+                <button id="retryBtn" onclick="resetGame()">Play again?</button>
+                `;
+            }
+        }
+        
+        function userSelect(selected){
+            selectedByUser = selected;
+            computerSelect();
+        }
+
+        function computerSelect(){
+            let choices = ["rock", "scissors", "paper"];
+            selectedByComputer = choices[Math.floor(Math.random() * 3)];
+            checkWinner();   
+        }
+
+        function checkWinner(){
+            if(selectedByUser == "rock" && selectedByComputer == "scissors"
+                || selectedByUser == "papers" && selectedByComputer == "rock"
+                || selectedByUser == "scissors" && selectedByComputer == "paper"){
+                    winner = "You";
+                }
+            if(selectedByComputer == "rock" && selectedByUser == "scissors"
+                || selectedByComputer == "paper" && selectedByUser == "rock"
+                || selectedByComputer == "scissors" && selectedByUser == "paper"){
+                    winner = "Computer";
+                }
+            if(selectedByUser != "none" && selectedByUser == selectedByComputer){
+                winner = "No one";
+            }
+                
+            updateView();
+            
+        }
+
+        function resetGame() {
+            selectedByUser = "none";
+            selectedByComputer = "none";
+            winner = "none";
+            updateView();
+        }
+
+    </script>
+</body>
+</html>

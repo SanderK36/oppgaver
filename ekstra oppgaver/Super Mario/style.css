@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+#SelectableCharacters {
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.mario {
+    cursor: pointer;
+}
+
+.luigi {
+    cursor: pointer;
+}
+
+.peach {
+    cursor: pointer;
+}
+
+.yoshi {
+    cursor: pointer;
+}
