@@ -3,22 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chatbot</title>
+    <style>
+        #imgDiv {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #botImg {
+            width: 300px;
+        }
+
+        #wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        #inputField {
+            width: 300px;
+            height: 40px;
+            border-radius: 10px;
+            box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid transparent;
+            background-color: #3244db;
+            color: white;
+            outline: none;
+            padding-left: 10px;
+        }
+        
+        ::placeholder {
+            color: white;
+            font-size: 16px;
+        }
+
+        .sendText {
+            width: 70px;
+            height: 40px;
+            border-radius: 10px;
+            box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid transparent;
+            background-color: #3244db;
+            color: white;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .sendText:hover {
+            background-color: #2a35b0;
+        }
+
+        /* Chatlog-stil */
+        #chatWindow {
+            width: 500px;
+            height: 300px;
+            border: 1px solid black;
+            border-radius: 10px;
+            margin: 20px auto;
+            padding: 10px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+
+        .message {
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 10px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .user {
+            background-color: #3244db;
+            color: white;
+            align-self: flex-end;
+            text-align: right;
+        }
+
+        .bot {
+            background-color: #ddd;
+            color: black;
+            align-self: flex-start;
+            text-align: left;
+        }
+
+        #chatLog {
+            display: flex;
+            flex-direction: column;
+        }
+
+    </style>
 </head>
 <body>
     <div id="app"></div>
 
     <script>
         const app = document.getElementById('app');
+        let chatlog = [];
+        const delayInMs = 1001;
 
         updateView();
         function updateView() {
             app.innerHTML = /*HTML*/`
-            <div id="wrap">
-            <input type="text" name="" id="inputField" placeholder="Skriv noe til chatBotten :D">
+            <div id="imgDiv">
+                <img src="./img/chatbot-chat-message-vectorart_78370-4104.png" alt="Chatbot" id="botImg">
             </div>
-    
+            
+            <div id="chatWindow">
+                <div id="chatLog">
+                    ${chatlog.map(msg => `<div class="message ${msg.sender}">${msg.text}</div>`).join("")}
+                </div>
+            </div>
+
+            <div id="wrap">
+                <input type="text" id="inputField" placeholder="Skriv noe til ChatBotten :D">
+                <button class="sendText" onclick="sendMessage()">Send</button>
+            </div>
             `;
+
+            // Scroller nedover etter ny melding
+            setTimeout(() => {
+                document.getElementById("chatWindow").scrollTop = document.getElementById("chatWindow").scrollHeight;
+            }, 50);
+        }
+
+        function sendMessage() {
+            let inputField = document.querySelector("#inputField");
+            let messageInput = inputField.value.trim();
+            if (messageInput === "") return;  // Unngå tomme meldinger
+
+            chatlog.push({ sender: "user", text: messageInput });
+            inputField.value = "";
+            updateView();
+            
+            setTimeout(() => {
+                botReply(messageInput);
+            }, delayInMs);
+        }
+
+        function botReply(message) {
+            let response = "...?";
+            let messageToLower = message.toLowerCase();
+
+            if (messageToLower == "hei" || messageToLower == "hallo") {
+                response = "Heisann!";
+            } else if (messageToLower == "går det bra?" || messageToLower == "åssen gårre?") {
+                response = "Det går bare bra med meg, takk som spør! Hvordan går det med deg?";
+            } else if (messageToLower == "bra") {
+                response = "Det var godt å høre! Ha en fin dag videre!";
+            } else if (messageToLower == "ikke bra") {
+                response = 'Huff da.. det var trist. Håper du får det bedre snart! <br> <img src="kitten.gif">';
+            }
+
+            chatlog.push({ sender: "bot", text: response });
+            updateView();
         }
     </script>
 </body>
