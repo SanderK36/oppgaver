@@ -224,7 +224,9 @@
                 }
             }
             app.innerHTML = html;
+            const logDiv = app.querySelector('.adventureLog');
             app.querySelector('.adventureLog').innerHTML = model.data.log.map(log => `<p>${log}</p>`).join('');
+            logDiv.scrollTo({ top: logDiv.scrollHeight, behavior: 'smooth' });
         }
 
         //Controller
