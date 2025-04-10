@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app"></div>
+
+    <script>
+        const model = {
+            app: {},
+            input:{},
+            data:{
+                bike:[
+                    {price: 1000, bikeModel:"Yosemite", location:"Drammen", isRented: false},
+                    {price: 9500, bikeModel:"Momas", location:"Skien", isRented: false},
+                    {price: 500, bikeModel:"DBS", location:"Elverum", isRented: true},           
+                ]         
+            }
+
+        }
+        const app = document.getElementById('app')
+
+        updateView();
+        function updateView() {
+            let html = ``;
+           
+            for(let i = 0; i < model.data.bike.length; i++){
+                html+=`
+                <li>
+                    ${model.data.bike[i].bikeModel}
+                    ${model.data.bike[i].location}
+                    ${model.data.bike[i].price}
+                    ${model.data.bike[i].isRented ? "Utleid" : "Ikke utleid <button>LEI NÅ! </button>"} 
+                    
+                    </li>
+                
+                `;
+            }
+
+            app.innerHTML = html;
+        }
+         /*
+    Kunden ønsker en applikasjon som skal kunne liste opp syklene den har så andre kan leie dem. 
+    Det skal også være mulig å legge til nye sykler etterhvert.
+
+    1. Lag en modell som kan fungere til teksten ovenfor (ha med sykkelmodell,  leiePris, område den befinner 
+   seg i og om den er leid ut eller ikke)
+2. Lag viewfunksjon for å vise frem alle syklene våre
+3. Gjør det mulig å legge til nye sykler i modellen 
+
+    */
+    </script>
+</body>
+</html>

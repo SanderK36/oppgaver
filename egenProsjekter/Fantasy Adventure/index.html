@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1501436513145-30f24e19fcc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'); /* Misty forest */
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            font-family: 'MedievalSharp', cursive;
+            color: #2c1e0f; /* Dark brown */
+        }
+        #app {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(245, 235, 215, 0.9); /* Parchment with slight transparency */
+            border: 4px solid #8b5a2b; /* Wood-brown border */
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .inventoryBox {
+            display: none;
+            position: absolute;
+            left: 400px;
+            border: 3px solid #3c2f2f; /* Leather edge */
+            background: #d9c2a7 url('https://www.transparenttextures.com/patterns/leather.png'); /* Leather texture */
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 20;
+            border-radius: 8px;
+            font-family: 'MedievalSharp', cursive;
+            color: #2c1e0f;
+            font-size: 16px;
+            max-width: 300px;
+        }
+
+        li {
+            position: relative;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px dashed #8b5a2b; /* Hand-drawn line */
+            font-size: 18px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            position: relative;
+            z-index: 10;
+            padding: 8px 15px;
+            margin: 5px;
+            background: #5c4033 url('https://www.transparenttextures.com/patterns/wood-pattern.png'); /* Wood texture */
+            color: #f5e6cc;
+            border: 2px solid #3c2f2f;
+            border-radius: 5px;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        button:hover {
+            background: #8b5a2b;
+            color: #ffd700;
+            box-shadow: 0 0 10px #ffd700, 0 2px 6px rgba (0, 0, 0, 0.6);
+        }
+
+        .adventureLog {
+            margin-top: 20px;
+            padding: 10px; 
+            border: 1px solid #ccc; 
+            background-color: #fff; 
+            max-height: 200px; 
+            overflow-y: auto; 
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            background: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); /* Subtle paper texture */
+            border: 2px solid #5c4033; /* Darker wood */
+            border-radius: 5px;
+        }
+
+        li:last-child {
+            border-bottom: none; /* No line on last item */
+        }
+
+        li strong {
+            font-family: 'Cinzel', serif;
+            color: #4a2c1a; /* Rich brown */
+            font-weight: 700;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: #4a2c1a;
+            font-size: 28px;
+            text-align: center;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            margin: 10px 0;
+            border-bottom: 2px solid #8b5a2b;
+            padding-bottom: 5px;
+        }
+
+        p {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 18px;
+            margin: 5px 0;
+            color: #2c1e0f;
+        }
+
+        .adventureLog {
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px solid #5c4033;
+            background: #f5e6cc url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: 'MedievalSharp', cursive;
+            font-size: 16px;
+            color: #2c1e0f;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+        .adventureLog p {
+            margin: 5px 0;
+            line-height: 1.4;
+        }
+
+        .orcImage {
+            width: 200px; /* Adjust size as needed */
+            height: auto;
+            border: 3px solid #5c4033; /* Wood-brown frame */
+            border-radius: 5px;
+            margin: 10px auto;
+            display: block; /* Center it */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Dark shadow */
+            background: #f5e6cc; /* Parchment behind image */
+            padding: 5px; /* Inner padding */
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <!-- <script src="./script/controller.js"></script>
+    <script src="./script/model.js"></script>
+    <script src="./script/view.js"></script> -->
+
+    <script>
+        //Model
+        const model = {
+            app:{},
+            input:{},
+            data:{
+                characters:[
+                    {name:"Gandalf", classType:"mage", hp:150, strength:10,  magic:235, inventory:["Great Staff", "Magic Ring", "Mana potion", "Spellbook", "Health potion"]},
+                    {name:"Aragorn", classType:"warrior", hp:275, strength:80,  magic:20, inventory:["Sword", "Shield", "Health potion"]},
+                    {name:"Legolas", classType:"archer", hp:180, strength:60,  magic:30, inventory:["Bow", "Arrows", "Health potion"]},
+                    {name:"Frodo", classType:"thief", hp:150, strength:40,  magic:50, inventory:["Dagger", "Ring of Invisibility", "Health potion"]},
+                    {name:"Gimli", classType:"dwarf", hp:220, strength:90,  magic:10, inventory:["Axe", "Shield", "Health potion"]},
+                ],
+                selectedCharacter: null,
+                log: [],
+                inAdventure: false,
+                currentEnemy: null,
+                orcImages: [
+                    "./imgs/bigAxeOrc.png",
+                    "./imgs/doubleAxeOrc.png"
+                ]
+            }
+
+}
+
+        //View
+        const app = document.getElementById('app')
+        updateView();
+        function updateView() {
+            let html = "";
+            if(!model.data.inAdventure) {
+                html+=/*HTML*/`<ul>`;
+                    for(let i = 0; i < model.data.characters.length; i++){
+                        html+= /*HTML*/`
+                        <li>
+                            <strong>${model.data.characters[i].name}</strong> -
+                            class: ${model.data.characters[i].classType}
+                            HP: ${model.data.characters[i].hp}
+                            Strength: ${model.data.characters[i].strength}
+                            Magic: ${model.data.characters[i].magic}
+                            <button onclick="showInventory(${i}, this)">Inventory</button>
+                            <div class="inventoryBox"></div>
+                            <button onclick="startAdventure(${i})">Go on Adventure!</button>
+                        </li>
+                        `;
+                    }
+                    html += /*HTML*/ `</ul>`;
+            } else {
+                let char = model.data.selectedCharacter;
+                html += /*HTML*/`
+                    <h2>${char.name}'s Adventure</h2>
+                    <p>HP: ${char.hp}</p>
+                    <div class="adventureLog"></div>
+                `;
+                if(model.data.currentEnemy) {
+                    html+= /*HTML*/ `
+                        <img src="${model.data.currentEnemy.image}" class="orcImage">
+                        <p>Orc HP: ${model.data.currentEnemy.hp}</p>
+                        <button onclick="playerAttack()">Attack</button>
+                        <button onclick="playerRun()">Run</button>
+                    `;
+                } else {
+                    html += /*HTML*/`
+                    <button onclick="explore()">Explore</button>
+                    <button onclick="rest()">Rest</button>
+                    <button onclick="endAdventure()">Return to Party</button>
+                    `;
+                }
+            }
+            app.innerHTML = html;
+            app.querySelector('.adventureLog').innerHTML = model.data.log.map(log => `<p>${log}</p>`).join('');
+        }
+
+        //Controller
+
+         function showInventory(index, button){
+            const inventoryDiv = button.nextElementSibling;
+            const character = model.data.characters[index];
+            const inventoryList = character.inventory.join(", ");
+
+            if(inventoryDiv.style.display === "none" || inventoryDiv.innerHTML === "") {
+                inventoryDiv.innerHTML = `<strong>Inventory:</strong> ${inventoryList}`;
+                inventoryDiv.style.display = "block";
+            } else {
+                inventoryDiv.style.display = "none";
+            }
+         }
+
+         function startAdventure(index) {
+            model.data.selectedCharacter = model.data.characters[index];
+            model.data.log = [];
+            model.data.inAdventure = true;
+            addToLog(model.data.selectedCharacter.name + " sets out on an adventure!");
+            updateView();
+         }
+
+         function explore() {
+            if (Math.random() < 0.5) {
+                const randomIndex = Math.floor(Math.random() * model.data.orcImages.length);
+                model.data.currentEnemy = {
+                    hp: 250,
+                    image: model.data.orcImages[randomIndex]
+                };
+                addToLog("An orc appears! Prepare for battle!");
+            } else {
+                addToLog(model.data.selectedCharacter.name + " explores and finds nothing...");
+            }
+            updateView();
+         }
+
+         function addToLog(message) {
+            model.data.log.push(message);
+         }
+
+         function adventureStep() {
+            const character = model.data.selectedCharacter;
+            if(character.hp <= 0) {
+                addToLog(character.name + " has fallen in battle.. his bravery will not be forgotten.");
+                return;
+            }
+
+            if (Math.random() < 0.5) {
+                fightOrc(character);
+            } else {
+                addToLog(character.name + " explores and finds nothing...");
+            }
+            updateView();
+            setTimeout(adventureStep, 2000);
+         }
+
+         function playerAttack() {
+            let char = model.data.selectedCharacter;
+            let orc = model.data.currentEnemy;
+            let damage = 0;
+            if (char.classType === "mage") {
+                damage = Math.floor(char.magic * 0.5);
+                addToLog(char.name + " casts a fireball, dealing " + damage + " damage!");
+            } else if (char.classType === "warrior") {
+                damage = char.strength;
+                addToLog(char.name + " slashes with a sword, dealing " + damage + " damage!");
+            } else if (char.classType === "archer") {
+                damage = char.strength + Math.floor(char.magic * 0.2);
+                addToLog(char.name + " shoots an arrow, dealing " + damage + " damage!");
+            } else if (char.classType === "thief") {
+                damage = Math.random() < 0.3 ? char.strength * 2 : char.strength;
+                addToLog(char.name + " stabs sneakily, dealing " + damage + " damage" + (damage > char.strength ? " (critical hit!)" : "") + "!");
+            } else if (char.classType === "dwarf") {
+                damage = char.strength + 20;
+                addToLog(char.name + " smashes with an axe, dealing " + damage + " damage!");
+            }
+            orc.hp -= damage;
+            if (orc.hp <= 0) {
+                addToLog("The orc is defeated!");
+                model.data.currentEnemy = null;
+            } else {
+                orcAttack();
+            }
+            updateView();
+    }
+
+        function orcAttack() {
+            let char = model.data.selectedCharacter;
+            let orcDamage = Math.floor(Math.random() * 21) + 10; // 10-30 damage
+            char.hp -= orcDamage;
+            addToLog("The orc fights back, dealing " + orcDamage + " damage. HP left: " + char.hp);
+            if (char.hp <= 0) {
+                addToLog(char.name + " has fallen in battle...");
+                model.data.inAdventure = false; // Back to list
+            }
+        }
+
+        function rest(){
+            let char = model.data.selectedCharacter;
+            char.hp += 20;
+            addToLog(char.name + " rests and recovers 20 HP. Current HP: " + char.hp);
+            updateView();
+        }
+
+        function playerRun() {
+            if (Math.random() < 0.7) {
+                addToLog(model.data.selectedCharacter.name + " Runs away safely!");
+                model.data.currentEnemy = null;
+            } else {
+                addToLog(model.data.selectedCharacter.name + " fails to escape!");
+                orcAttack();
+            }
+            updateView();
+        }
+
+        function endAdventure() {
+            model.data.inAdventure = false;
+            model.data.selectedCharacter = null;
+            model.data.currentEnemy = null;
+            model.data.log = [];
+            updateView();
+        }
+
+        //  function sortByStrength() {
+        //     model.data.characters.sort(function(a, b) {
+        //         return b.strength - a.strength;
+        //     });
+        //     updateView();
+        //  }
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rent-a-Bike</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      /*
+    Kunden ønsker en applikasjon som skal kunne liste opp syklene den har så andre kan leie dem. 
+    Det skal også være mulig å legge til nye sykler etterhvert.
+1. Lag en modell som kan fungere til teksten ovenfor (ha med sykkelmodell,  leiePris, område den befinner 
+   seg i og om den er leid ut eller ikke)
+2. Lag viewfunksjon for å vise frem alle syklene våre
+3. Gjør det mulig å legge til nye sykler i modellen 
+
+BONUS
+4. Lag et eget  view for å legge til ny sykkel i modellen
+5. Lag et view for å vise ledige sykler (de som ikke er leid ut)
+
+    */
+      const app = document.getElementById("app");
+      let model = {
+        input: {
+          bikeToAdd: {
+            bikeModel: "",
+            bikePrice: 50,
+            bikePlacement: "Larvik",
+            isRented: false,
+          },
+        },
+        data: {
+          myBikes: [
+            {
+              bikeModel: "Yosemite",
+              bikePrice: 200,
+              bikePlacement: "Hedrum",
+              isRented: false,
+            },
+            {
+              bikeModel: "Momas",
+              bikePrice: 2000,
+              bikePlacement: "Skien",
+              isRented: true,
+            },
+            {
+              bikeModel: "DBS",
+              bikePrice: 70,
+              bikePlacement: "Larvik",
+              isRented: false,
+            },
+          ],
+        },
+      };
+
+      seeBikesView();
+      function seeBikesView() {
+        let html = `ALLE SYKLER:`;
+        for (let i = 0; i < model.data.myBikes.length; i++) {
+          html += `<li>
+            ${model.data.myBikes[i].bikeModel},
+            ${model.data.myBikes[i].bikePlacement} -- koster;
+            ${model.data.myBikes[i].bikePrice}kr timen
+            </li>`;
+        }
+        html += `<button onclick="addBikeView()"> Legg til ny Sykkel </button>
+            <button onclick="unRentedBikesView()"> Se ledige Sykler</button>
+    `;
+        app.innerHTML = html;
+      }
+
+      function addBikeView() {
+        let html = `
+    Sykkelmodell: <input type="text" onchange="model.input.bikeToAdd.bikeModel = this.value"/> <br>
+    Område: <input type="text" onchange="model.input.bikeToAdd.bikePlacement = this.value" /><br>
+    Timepris: <input type="text" onchange="model.input.bikeToAdd.bikePrice = this.value" /><br>
+    <button onclick="addBike()">Lagre sykkel</button>
+    `;
+        app.innerHTML = html;
+      }
+
+      function unRentedBikesView() {
+        let html = `LEDIGE SYKLER <br>`;
+        for (let i = 0; i < model.data.myBikes.length; i++) {
+          if (model.data.myBikes[i].isRented == false) {
+            html += `
+            <li>
+                ${model.data.myBikes[i].bikeModel},
+                ${model.data.myBikes[i].bikePlacement} -- koster;
+                ${model.data.myBikes[i].bikePrice}kr timen
+            </li>
+            `;
+          }
+        }
+        html += `<button onclick="seeBikesView()">Se alle sykler</button>`;
+        app.innerHTML = html;
+      }
+
+      function addBike() {
+        model.data.myBikes.push(model.input.bikeToAdd);
+        seeBikesView();
+      }
+    </script>
+  </body>
+</html>
