@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #wrap {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            grid-column-gap: 0px;
+            grid-row-gap: 0px;
+            margin-left: 30%;
+            margin-right: 30%;
+            margin-top: 10%;
+        }
+
+        button {
+            height: 100px;
+            font-size: 35px;
+            cursor: pointer;
+            
+        }
+
+        h1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 45px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        const app = document.getElementById('app');
+
+        updateView();
+        function updateView() {
+            app.innerHTML = /*HTML*/`
+            <h1>Soundboard!</h1>
+            <div id="wrap">
+                <button onclick="play('clay')"><audio id="clay" class="sound" src="./sounds/clay.mp3"></audio>Clay🔊</button>
+                <button onclick="play('bubbles')"><audio id="bubbles" class="sound" src="./sounds/bubbles.mp3"></audio>Bubbles🔊</button>
+                <button onclick="play('confetti')"><audio id="confetti" class="sound" src="./sounds/confetti.mp3"></audio>Confetti🔊</button>
+                <button onclick="play('glimmer')"><audio id="glimmer" class="sound" src="./sounds/glimmer.mp3"></audio>Glimmer🔊</button>
+                <button onclick="play('ufo')"><audio id="ufo" class="sound" src="./sounds/ufo.mp3"></audio>Ufo🔊</button>
+                <button onclick="play('moon')"><audio id="moon" class="sound" src="./sounds/moon.mp3"></audio>Moon🔊</button>
+                
+            </div>
+            
+            `;
+        }
+
+        function play(selectedSound) {
+            document.getElementById(selectedSound).play();
+        }
+    </script>
+</body>
+</html>

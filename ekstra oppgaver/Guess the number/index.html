@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        #wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2px;
+        }
+
+        #inputValue {
+            width: 50px;
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        const app = document.getElementById('app');
+        let computerNumber = Math.floor(Math.random() * 10) + 1;
+        // let computerNumber = 5;
+        let userNumber = 0;
+        
+        updateView();
+        function updateView() {
+            app.innerHTML = /*HTML*/`
+            <h1>Guess the number</h1>
+            <div id="wrapper">
+            <input type="number" name="" id="inputValue" oninput="userNumber = Number(this.value)">
+            <div id="compNumb"></div>
+            <button id="guess" onclick="userNumb()">Guess</button>
+            </div>
+            `;
+
+        }
+
+        function userNumb() {
+            if (userNumber === computerNumber) {
+                app.innerHTML = /*HTML*/`
+                <h1>Guess the number</h1>
+                <div id="wrapper">
+                    <p>Correct! The number was ${computerNumber}</p>
+                    <button onclick="resetGame()">Play again</button>
+                </div>
+                `;
+            } else if (userNumber > computerNumber) {
+                app.innerHTML = /*HTML*/`
+                <h1>Guess the number</h1>
+                <div id="wrapper">
+                    <p>Too high! Try again.</p>
+                    <button onclick="resetGame()">Play again</button>
+                </div>
+                `;
+            } else {
+                app.innerHTML = /*HTML*/`
+                <h1>Guess the number</h1>
+                <div id="wrapper">
+                    <p>Too low! Try again.</p>
+                    <button onclick="resetGame()">Play again</button>
+                </div>
+                `;
+            }
+        }
+
+        function resetGame() {
+            userNumber = 0;
+            computerNumber = Math.floor(Math.random() * 10) + 1;
+            updateView();
+        }
+    </script>
+</body>
+</html>
