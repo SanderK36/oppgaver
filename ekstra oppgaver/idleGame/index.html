@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idle Game</title>
+    <style>
+        #clickArea { 
+            width: 100px; 
+            height: 100px; 
+            background: #aaf; 
+            cursor: pointer; 
+            text-align: center; 
+            line-height: 100px;
+        }
+        #upgrades { 
+            margin-top: 20px; 
+            padding: 10px; 
+            background: #eee; 
+        }
+        .upgrade { 
+            cursor: pointer; 
+            margin: 5px; 
+            padding: 5px; 
+            background: #ddd; 
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        // Model
+        const model = {
+            data: {
+                playerMoney: 0,
+                totalMoneyEarned: 0,
+                cursorStrength: 1,
+                upgrades: {
+                    autoClicker: {
+                        amount: 0,
+                        price: 10,
+                        strength: 1
+                    }
+                }
+            }
+        };
+
+        // View
+        function updateView() {
+            const app = document.getElementById('app');
+            app.innerHTML = /*HTML*/`
+                <div id="clickArea" onclick="clickMoney()">Click!</div>
+                <div>Money: ${Math.floor(model.data.playerMoney)}</div>
+                <div>Total Money Earned: ${Math.floor(model.data.totalMoneyEarned)}</div>
+                <div>Cursor Strength: ${model.data.cursorStrength}</div>
+                <div id="upgrades">
+                    <div class="upgrade" onclick="buyUpgrade('autoClicker')">
+                        Auto Clicker (Amount: ${model.data.upgrades.autoClicker.amount}, 
+                        Price: ${Math.floor(model.data.upgrades.autoClicker.price)}, 
+                        Strength: ${model.data.upgrades.autoClicker.strength})
+                    </div>
+                </div>
+            `;
+        }
+
+        // Controller
+        function game() {
+            let payout = 0;
+            setInterval(() => {
+                payout = gameUpgrades();
+                model.data.playerMoney += payout;
+                model.data.totalMoneyEarned += payout;
+                updateView();
+            }, 100); 
+        }
+
+        function gameUpgrades() {
+            let payout = 0;
+            const autoClicker = model.data.upgrades.autoClicker;
+            if (autoClicker.amount > 0) {
+                payout += (autoClicker.amount * autoClicker.strength) / 1;
+            }
+            return payout;
+        }
+
+        function clickMoney() {
+            model.data.playerMoney += model.data.cursorStrength;
+            model.data.totalMoneyEarned += model.data.cursorStrength;
+            updateView();
+        }
+
+        function buyUpgrade(upgradeName) {
+            const upgrade = model.data.upgrades[upgradeName];
+            if (model.data.playerMoney >= upgrade.price) {
+                model.data.playerMoney -= upgrade.price;
+                upgrade.amount += 1;
+                upgrade.price = Math.floor((upgrade.price / 2) * Math.E);
+                updateView();
+            }
+        }
+
+        
+        updateView();
+        game();
+    </script>
+</body>
+</html>
